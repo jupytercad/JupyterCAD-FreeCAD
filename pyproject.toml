@@ -7,7 +7,7 @@ requires = [
 build-backend = "hatchling.build"
 
 [project]
-name = "jupytercad-freecad"
+name = "jupytercad_freecad"
 readme = "README.md"
 license = { file = "LICENSE" }
 requires-python = ">=3.8"
@@ -36,24 +36,25 @@ source = "nodejs"
 fields = ["description", "authors", "urls"]
 
 [tool.hatch.build.targets.sdist]
-artifacts = ["jupytercad-freecad/labextension"]
+artifacts = ["jupytercad_freecad/labextension"]
 exclude = [".github", "binder"]
 
 [tool.hatch.build.targets.wheel.shared-data]
-"jupytercad-freecad/labextension" = "share/jupyter/labextensions/@jupytercad/jupytercad-freecad"
 "install.json" = "share/jupyter/labextensions/@jupytercad/jupytercad-freecad/install.json"
+"jupytercad_freecad/labextension" = "share/jupyter/labextensions/@jupytercad/jupytercad-freecad"
+"jupyter-config/server-config" = "etc/jupyter/jupyter_server_config.d"
 
 [tool.hatch.build.hooks.version]
-path = "jupytercad-freecad/_version.py"
+path = "jupytercad_freecad/_version.py"
 
 [tool.hatch.build.hooks.jupyter-builder]
 dependencies = ["hatch-jupyter-builder>=0.5"]
 build-function = "hatch_jupyter_builder.npm_builder"
 ensured-targets = [
-    "jupytercad-freecad/labextension/static/style.js",
-    "jupytercad-freecad/labextension/package.json",
+    "jupytercad_freecad/labextension/static/style.js",
+    "jupytercad_freecad/labextension/package.json",
 ]
-skip-if-exists = ["jupytercad-freecad/labextension/static/style.js"]
+skip-if-exists = ["jupytercad_freecad/labextension/static/style.js"]
 
 [tool.hatch.build.hooks.jupyter-builder.build-kwargs]
 build_cmd = "build:prod"
@@ -63,7 +64,7 @@ npm = ["jlpm"]
 build_cmd = "install:extension"
 npm = ["jlpm"]
 source_dir = "src"
-build_dir = "jupytercad-freecad/labextension"
+build_dir = "jupytercad_freecad/labextension"
 
 [tool.jupyter-releaser.options]
 version_cmd = "hatch version"

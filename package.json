@@ -1,6 +1,6 @@
 {
     "name": "@jupytercad/jupytercad-freecad",
-    "version": "0.3.3",
+    "version": "1.0.0-alpha.1",
     "description": "A JupyterCad extension.",
     "keywords": [
         "jupyter",
@@ -34,7 +34,7 @@
         "clean": "jlpm clean:lib",
         "clean:lib": "rimraf lib tsconfig.tsbuildinfo",
         "clean:lintcache": "rimraf .eslintcache .stylelintcache",
-        "clean:labextension": "rimraf jupytercad-freecad/labextension jupytercad-freecad/_version.py",
+        "clean:labextension": "rimraf jupytercad_freecad/labextension jupytercad_freecad/_version.py",
         "clean:all": "jlpm clean:lib && jlpm clean:labextension && jlpm clean:lintcache",
         "eslint": "jlpm eslint:check --fix",
         "eslint:check": "eslint . --cache --ext .ts,.tsx",
@@ -51,6 +51,11 @@
         "watch:labextension": "jupyter labextension watch ."
     },
     "dependencies": {
+        "@jupyter/collaboration": "^1.0.0",
+        "@jupyter/docprovider": "^1.0.0",
+        "@jupytercad/base": "^1.0.0-alpha.1",
+        "@jupytercad/jupytercad-core": "^1.0.0-alpha.1",
+        "@jupytercad/schema": "^1.0.0-alpha.1",
         "@jupyterlab/application": "^4.0.0"
     },
     "devDependencies": {
@@ -77,6 +82,12 @@
         "typescript": "~5.0.2",
         "yjs": "^13.5.0"
     },
+    "resolutions": {
+        "@jupyterlab/apputils": "~4.0.0",
+        "@lumino/coreutils": "^2.0.0",
+        "@jupyterlab/notebook": "~4.0.0",
+        "@jupyterlab/services": " ^7.0.0"
+    },
     "sideEffects": [
         "style/*.css",
         "style/index.js"
@@ -87,7 +98,25 @@
     },
     "jupyterlab": {
         "extension": true,
-        "outputDir": "jupytercad-freecad/labextension"
+        "outputDir": "jupytercad_freecad/labextension",
+        "sharedPackages": {
+            "@jupytercad/base": {
+                "singleton": true,
+                "bundled": false
+            },
+            "@jupytercad/schema": {
+                "singleton": true,
+                "bundled": false
+            },
+            "@jupytercad/jupytercad-core": {
+                "singleton": true,
+                "bundled": false
+            },
+            "@jupyter/docprovider": {
+                "singleton": true,
+                "bundled": false
+            }
+        }
     },
     "eslintIgnore": [
         "node_modules",
