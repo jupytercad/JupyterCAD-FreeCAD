@@ -1,4 +1,4 @@
-# Making a new release of jupytercad-freecad
+# Making a new release of jupytercad_freecad
 
 The extension can be published to `PyPI` and `npm` manually or using the [Jupyter Releaser](https://github.com/jupyter-server/jupyter_releaser).
 

@@ -2,47 +2,43 @@ import {
   ICollaborativeDrive,
   SharedDocumentFactory
 } from '@jupyter/docprovider';
-import { IAnnotationModel, JupyterCadDoc } from '@jupytercad/schema';
+import {
+  IAnnotationModel,
+  IJCadWorkerRegistry,
+  JupyterCadDoc,
+  IJCadWorkerRegistryToken
+} from '@jupytercad/schema';
 import {
   JupyterFrontEnd,
   JupyterFrontEndPlugin
 } from '@jupyterlab/application';
 import {
-  ICommandPalette,
   IThemeManager,
   showErrorMessage,
   WidgetTracker
 } from '@jupyterlab/apputils';
-import { IFileBrowserFactory } from '@jupyterlab/filebrowser';
-import { ILauncher } from '@jupyterlab/launcher';
-import { fileIcon } from '@jupyterlab/ui-components';
 
-import { JupyterCadWidgetFactory } from '../factory';
-import { IAnnotationToken, IJupyterCadDocTracker } from '../token';
-import { requestAPI } from '../tools';
-import { IJupyterCadWidget } from '../types';
+import { JupyterCadWidgetFactory } from '@jupytercad/jupytercad-core';
+import {
+  IAnnotationToken,
+  IJupyterCadDocTracker,
+  IJupyterCadWidget
+} from '@jupytercad/schema';
+import { requestAPI } from '@jupytercad/base';
 import { JupyterCadFCModelFactory } from './modelfactory';
 
 const FACTORY = 'Jupytercad Freecad Factory';
-
-// const PALETTE_CATEGORY = 'JupyterCAD';
-
-namespace CommandIDs {
-  export const createNew = 'jupytercad:create-new-FCStd-file';
-}
 
 const activate = async (
   app: JupyterFrontEnd,
   tracker: WidgetTracker<IJupyterCadWidget>,
   themeManager: IThemeManager,
   annotationModel: IAnnotationModel,
-  browserFactory: IFileBrowserFactory,
   drive: ICollaborativeDrive,
-  launcher: ILauncher | null,
-  palette: ICommandPalette | null
+  workerRegistry: IJCadWorkerRegistry
 ): Promise<void> => {
   const fcCheck = await requestAPI<{ installed: boolean }>(
-    'cad/backend-check',
+    'jupytercad_freecad/backend-check',
     {
       method: 'POST',
       body: JSON.stringify({
@@ -67,6 +63,7 @@ const activate = async (
     defaultFor: ['FCStd'],
     tracker,
     commands: app.commands,
+    workerRegistry,
     backendCheck
   });
 
@@ -109,18 +106,15 @@ const activate = async (
   });
 };
 
-const fcplugin: JupyterFrontEndPlugin<void> = {
+export const fcplugin: JupyterFrontEndPlugin<void> = {
   id: 'jupytercad:fcplugin',
   requires: [
     IJupyterCadDocTracker,
     IThemeManager,
     IAnnotationToken,
-    IFileBrowserFactory,
-    ICollaborativeDrive
+    ICollaborativeDrive,
+    IJCadWorkerRegistryToken
   ],
-  optional: [ILauncher, ICommandPalette],
   autoStart: true,
   activate
 };
-
-export default fcplugin;
