@@ -6,7 +6,9 @@ import {
   IAnnotationModel,
   IJCadWorkerRegistry,
   JupyterCadDoc,
-  IJCadWorkerRegistryToken
+  IJCadWorkerRegistryToken,
+  IJCadExternalCommandRegistry,
+  IJCadExternalCommandRegistryToken
 } from '@jupytercad/schema';
 import {
   JupyterFrontEnd,
@@ -35,7 +37,8 @@ const activate = async (
   themeManager: IThemeManager,
   annotationModel: IAnnotationModel,
   drive: ICollaborativeDrive,
-  workerRegistry: IJCadWorkerRegistry
+  workerRegistry: IJCadWorkerRegistry,
+  externalCommandRegistry: IJCadExternalCommandRegistry
 ): Promise<void> => {
   const fcCheck = await requestAPI<{ installed: boolean }>(
     'jupytercad_freecad/backend-check',
@@ -64,6 +67,7 @@ const activate = async (
     tracker,
     commands: app.commands,
     workerRegistry,
+    externalCommandRegistry,
     backendCheck
   });
 
@@ -113,7 +117,8 @@ export const fcplugin: JupyterFrontEndPlugin<void> = {
     IThemeManager,
     IAnnotationToken,
     ICollaborativeDrive,
-    IJCadWorkerRegistryToken
+    IJCadWorkerRegistryToken,
+    IJCadExternalCommandRegistryToken
   ],
   autoStart: true,
   activate
