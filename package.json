@@ -122,6 +122,8 @@
         "node_modules",
         "dist",
         "coverage",
+        "ui-tests",
+        "**/build/",
         "**/*.d.ts"
     ],
     "eslintConfig": {

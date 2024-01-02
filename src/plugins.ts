@@ -108,6 +108,7 @@ const activate = async (
     app.shell.activateById('jupytercad::leftControlPanel');
     app.shell.activateById('jupytercad::rightControlPanel');
   });
+  console.log('jupytercad:fcplugin is activated!');
 };
 
 export const fcplugin: JupyterFrontEndPlugin<void> = {
