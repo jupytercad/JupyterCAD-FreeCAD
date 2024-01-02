@@ -53,9 +53,9 @@
     "dependencies": {
         "@jupyter/collaboration": "^1.0.0",
         "@jupyter/docprovider": "^1.0.0",
-        "@jupytercad/base": "^1.0.0-alpha.1",
-        "@jupytercad/jupytercad-core": "^1.0.0-alpha.1",
-        "@jupytercad/schema": "^1.0.0-alpha.1",
+        "@jupytercad/base": "^1.0.0-alpha.3",
+        "@jupytercad/jupytercad-core": "^1.0.0-alpha.3",
+        "@jupytercad/schema": "^1.0.0-alpha.3",
         "@jupyterlab/application": "^4.0.0"
     },
     "devDependencies": {
@@ -122,6 +122,8 @@
         "node_modules",
         "dist",
         "coverage",
+        "ui-tests",
+        "**/build/",
         "**/*.d.ts"
     ],
     "eslintConfig": {
