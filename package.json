@@ -1,7 +1,7 @@
 {
     "name": "@jupytercad/jupytercad-freecad",
     "version": "1.0.0-a3",
-    "description": "A JupyterCad extension.",
+    "description": "A JupyterCAD extension for FreeCAD.",
     "keywords": [
         "jupyter",
         "jupyterlab",
@@ -53,9 +53,9 @@
     "dependencies": {
         "@jupyter/collaboration": "^1.0.0",
         "@jupyter/docprovider": "^1.0.0",
-        "@jupytercad/base": "^1.0.0-alpha.3",
-        "@jupytercad/jupytercad-core": "^1.0.0-alpha.3",
-        "@jupytercad/schema": "^1.0.0-alpha.3",
+        "@jupytercad/base": "^1.0.0",
+        "@jupytercad/jupytercad-core": "^1.0.0",
+        "@jupytercad/schema": "^1.0.0",
         "@jupyterlab/application": "^4.0.0"
     },
     "devDependencies": {
