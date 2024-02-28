@@ -2,6 +2,22 @@
 
 <!-- <START NEW CHANGELOG ENTRY> -->
 
+## 2.0.0a0
+
+([Full Changelog](https://github.com/jupytercad/jupytercad-freecad/compare/v1.0.0...9f98946a94d3867630a106211c30bfb453b1378d))
+
+### Maintenance and upkeep improvements
+
+- Bump jupytercad [#8](https://github.com/jupytercad/jupytercad-freecad/pull/8) ([@trungleduc](https://github.com/trungleduc))
+
+### Contributors to this release
+
+([GitHub contributors page for this release](https://github.com/jupytercad/jupytercad-freecad/graphs/contributors?from=2024-01-12&to=2024-02-28&type=c))
+
+[@trungleduc](https://github.com/search?q=repo%3Ajupytercad%2Fjupytercad-freecad+involves%3Atrungleduc+updated%3A2024-01-12..2024-02-28&type=Issues)
+
+<!-- <END NEW CHANGELOG ENTRY> -->
+
 ## 1.0.0
 
 ([Full Changelog](https://github.com/jupytercad/jupytercad-freecad/compare/v1.0.0a3...9d5186e8d40721b464ca83a7051d4d0a580e932e))
@@ -15,8 +31,6 @@
 ([GitHub contributors page for this release](https://github.com/jupytercad/jupytercad-freecad/graphs/contributors?from=2024-01-02&to=2024-01-12&type=c))
 
 [@trungleduc](https://github.com/search?q=repo%3Ajupytercad%2Fjupytercad-freecad+involves%3Atrungleduc+updated%3A2024-01-02..2024-01-12&type=Issues)
-
-<!-- <END NEW CHANGELOG ENTRY> -->
 
 ## 1.0.0a3
 
