@@ -1,8 +1,7 @@
-import json
 from typing import Any, Callable
 from functools import partial
 
-import y_py as Y
+from pycrdt import Array, Map, Text
 from jupyter_ydoc.ybasedoc import YBaseDoc
 
 from .freecad.loader import FCStd
@@ -11,23 +10,23 @@ from .freecad.loader import FCStd
 class YFCStd(YBaseDoc):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        self._ysource = self._ydoc.get_text("source")
-        self._yobjects = self._ydoc.get_array("objects")
-        self._yoptions = self._ydoc.get_map("options")
-        self._ymeta = self._ydoc.get_map("metadata")
+        self._ydoc["source"] = self._ysource = Text()
+        self._ydoc["objects"] = self._yobjects = Array()
+        self._ydoc["options"] = self._yoptions = Map()
+        self._ydoc["metadata"] = self._ymetadata = Map()
         self._virtual_file = FCStd()
 
     @property
-    def objects(self) -> Y.YArray:
+    def objects(self) -> Array:
         return self._yobjects
 
     def version(self) -> str:
         return "0.1.0"
 
     def get(self):
-        fc_objects = json.loads(self._yobjects.to_json())
-        options = json.loads(self._yoptions.to_json())
-        meta = json.loads(self._ymeta.to_json())
+        fc_objects = self._yobjects.to_py()
+        options = self._yoptions.to_py()
+        meta = self._ymetadata.to_py()
 
         self._virtual_file.save(fc_objects, options, meta)
         return self._virtual_file.sources
@@ -38,16 +37,15 @@ class YFCStd(YBaseDoc):
         objects = []
 
         for obj in virtual_file.objects:
-            objects.append(Y.YMap(obj))
-        with self._ydoc.begin_transaction() as t:
-            length = len(self._yobjects)
-            self._yobjects.delete_range(t, 0, length)
-            # workaround for https://github.com/y-crdt/ypy/issues/126:
-            # self._yobjects.extend(t, objects)
-            for o in objects:
-                self._yobjects.append(t, o)
-            self._yoptions.update(t, virtual_file.options.items())
-            self._ymeta.update(t, virtual_file.metadata.items())
+            objects.append(Map(obj))
+        self._yobjects.clear()
+        self._yobjects.extend(objects)
+
+        self._yoptions.clear()
+        self._yoptions.update(virtual_file.options)
+
+        self._ymetadata.clear()
+        self._ymetadata.update(virtual_file.metadata)
 
     def observe(self, callback: Callable[[str, Any], None]):
         self.unobserve()
@@ -63,6 +61,6 @@ class YFCStd(YBaseDoc):
         self._subscriptions[self._yoptions] = self._yoptions.observe_deep(
             partial(callback, "options")
         )
-        self._subscriptions[self._ymeta] = self._ymeta.observe_deep(
+        self._subscriptions[self._ymetadata] = self._ymetadata.observe_deep(
             partial(callback, "meta")
         )
