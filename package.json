@@ -7,9 +7,9 @@
         "jupyterlab",
         "jupyterlab-extension"
     ],
-    "homepage": "https://github.com/jupytercad/jupytercad-freecad",
+    "homepage": "https://github.com/jupytercad/JupyterCAD-FreeCAD",
     "bugs": {
-        "url": "https://github.com/jupytercad/jupytercad-freecad/issues"
+        "url": "https://github.com/jupytercad/JupyterCAD-FreeCAD/issues"
     },
     "license": "BSD-3-Clause",
     "author": "JupyterCad contributors",
@@ -22,7 +22,7 @@
     "style": "style/index.css",
     "repository": {
         "type": "git",
-        "url": "https://github.com/jupytercad/jupytercad-freecad.git"
+        "url": "https://github.com/jupytercad/JupyterCAD-FreeCAD"
     },
     "scripts": {
         "build": "jlpm build:lib && jlpm build:labextension:dev",
@@ -53,9 +53,9 @@
     "dependencies": {
         "@jupyter/collaboration": "^2.0.0",
         "@jupyter/docprovider": "^2.0.0",
-        "@jupytercad/base": "^2.0.0-alpha.1",
-        "@jupytercad/jupytercad-core": "^2.0.0-alpha.1",
-        "@jupytercad/schema": "^2.0.0-alpha.1",
+        "@jupytercad/base": "^2.0.0",
+        "@jupytercad/jupytercad-core": "^2.0.0",
+        "@jupytercad/schema": "^2.0.0",
         "@jupyterlab/application": "^4.0.0"
     },
     "devDependencies": {
