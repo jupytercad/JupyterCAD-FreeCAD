@@ -34,11 +34,8 @@ def _guidata_to_options(guidata):
             options[obj_name] = data
             continue
 
-        if "ShapeColor" in data:
-            obj_options["color"] = list(data["ShapeColor"]["value"])
-
-        if "Visibility" in data:
-            obj_options["visibility"] = data["Visibility"]["value"]
+        # Handle other necessary properties if any
+        # Otherwise, remove the visibility and color logic
 
         options[obj_name] = obj_options
 
@@ -58,15 +55,8 @@ def _options_to_guidata(options):
             options[obj_name] = data
             continue
 
-        if "color" in data:
-            obj_data["ShapeColor"] = dict(
-                type="App::PropertyColor", value=tuple(data["color"])
-            )
-
-        if "visibility" in data:
-            obj_data["Visibility"] = dict(
-                type="App::PropertyBool", value=data["visibility"]
-            )
+        # Skip handling visibility and color properties here
+        # Or handle only essential properties
 
         gui_data[obj_name] = obj_data
 
