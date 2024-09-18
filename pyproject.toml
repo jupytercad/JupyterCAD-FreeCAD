@@ -28,7 +28,7 @@ classifiers = [
 ]
 dependencies = [
     "jupyter_ydoc>=2,<3",
-    "jupytercad_core>=2.0.0,<3",
+    "jupytercad_core>=3.0.0a1,<4",
 ]
 dynamic = ["version", "description", "authors", "urls", "keywords"]
 
