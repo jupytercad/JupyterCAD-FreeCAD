@@ -34,8 +34,13 @@ def _guidata_to_options(guidata):
             options[obj_name] = data
             continue
 
-        # Handle other necessary properties if any
-        # Otherwise, remove the visibility and color logic
+        # Handle FreeCAD's ShapeColor property and map to JupyterCad's color
+        if "ShapeColor" in data:
+            obj_options["color"] = list(data["ShapeColor"]["value"])  # RGB color format
+
+        # Handle FreeCAD's Visibility property and map to JupyterCad's visible property
+        if "Visibility" in data:
+            obj_options["visible"] = data["Visibility"]["value"]
 
         options[obj_name] = obj_options
 
@@ -52,11 +57,20 @@ def _options_to_guidata(options):
         # We need to make a special case to "GuiCameraSettings" because freecad's
         # OfflineRenderingUtils mixes the camera settings with 3D objects
         if obj_name == "GuiCameraSettings":
-            options[obj_name] = data
+            gui_data[obj_name] = data
             continue
 
-        # Skip handling visibility and color properties here
-        # Or handle only essential properties
+        # Handle color property from JupyterCad to FreeCAD's ShapeColor
+        if "color" in data:
+            obj_data["ShapeColor"] = dict(
+                type="App::PropertyColor", value=tuple(data["color"])
+            )
+
+        # Handle visibility property from JupyterCad to FreeCAD's Visibility
+        if "visible" in data:
+            obj_data["Visibility"] = dict(
+                type="App::PropertyBool", value=data["visible"]
+            )
 
         gui_data[obj_name] = obj_data
 
