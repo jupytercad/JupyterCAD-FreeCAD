@@ -36,7 +36,7 @@ def _guidata_to_options(guidata):
 
         # Handle FreeCAD's ShapeColor property and map to JupyterCad's color
         if "ShapeColor" in data:
-            obj_options["color"] = list(data["ShapeColor"]["value"])  # RGB color format
+            obj_options["color"] = list(data["ShapeColor"]["value"])
 
         # Handle FreeCAD's Visibility property and map to JupyterCad's visible property
         if "Visibility" in data:
