@@ -180,15 +180,32 @@ class FCStd:
                         # Add the Color property if it doesn't exist
                         if prop == "Color":
                             try:
-                                color_value = tuple(jcad_prop_value) if isinstance(jcad_prop_value, (list, tuple)) else (0.5, 0.5, 0.5)
-                                if all(isinstance(x, (int, float)) for x in color_value):
-                                    fc_obj.addProperty("App::PropertyColor", "Color", "Base", "A custom color property")
+                                color_value = (
+                                    tuple(jcad_prop_value)
+                                    if isinstance(jcad_prop_value, (list, tuple))
+                                    else (0.5, 0.5, 0.5)
+                                )
+                                if all(
+                                    isinstance(x, (int, float)) for x in color_value
+                                ):
+                                    fc_obj.addProperty(
+                                        "App::PropertyColor",
+                                        "Color",
+                                        "Base",
+                                        "A custom color property",
+                                    )
                                     setattr(fc_obj, "Color", color_value)
-                                    logger.info(f"Added Color property to object '{obj_name}'.")
+                                    logger.info(
+                                        f"Added Color property to object '{obj_name}'."
+                                    )
                                 else:
-                                    logger.error(f"Invalid color value: {jcad_prop_value} for object '{obj_name}'")
+                                    logger.error(
+                                        f"Invalid color value: {jcad_prop_value} for object '{obj_name}'"
+                                    )
                             except Exception as e:
-                                logger.error(f"Failed to add Color property to object '{obj_name}': {e}")
+                                logger.error(
+                                    f"Failed to add Color property to object '{obj_name}': {e}"
+                                )
 
             OfflineRenderingUtils.save(
                 fc_file,
