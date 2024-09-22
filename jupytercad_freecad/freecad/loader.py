@@ -20,6 +20,18 @@ with redirect_stdout_stderr():
     except ImportError:
         fc = None
 
+def _rgb_to_hex(rgb):
+    """Converts a list of RGB values [0-1] to a hex color string"""
+    return '#{:02x}{:02x}{:02x}'.format(
+        int(rgb[0] * 255),
+        int(rgb[1] * 255),
+        int(rgb[2] * 255)
+    )
+
+def _hex_to_rgb(hex_color):
+    """Convert hex color string to an RGB tuple"""
+    hex_color = hex_color.lstrip("#")
+    return tuple(int(hex_color[i:i+2], 16) / 255.0 for i in (0, 2, 4))
 
 def _guidata_to_options(guidata):
     """Converts freecad guidata into options that JupyterCad understands"""
@@ -36,7 +48,8 @@ def _guidata_to_options(guidata):
 
         # Handle FreeCAD's ShapeColor property and map to JupyterCad's color
         if "ShapeColor" in data:
-            obj_options["color"] = list(data["ShapeColor"]["value"])
+            color_rgb = data["ShapeColor"]["value"]
+            obj_options["color"] = _rgb_to_hex(color_rgb)
 
         # Handle FreeCAD's Visibility property and map to JupyterCad's visible property
         if "Visibility" in data:
@@ -127,7 +140,19 @@ class FCStd:
         # Get objects
         self._objects = []
         for obj in fc_file.Objects:
-            self._objects.append(self._fc_to_jcad_obj(obj))
+            obj_name = obj.Name
+
+            obj_data = self._fc_to_jcad_obj(obj)
+
+            if obj_name in self._options["guidata"]:
+                print(obj_name, obj_data)
+                if "color" in self._options["guidata"][obj_name]:
+                    obj_data['parameters']["Color"] = self._options["guidata"][obj_name]["color"]
+                if "visible" in self._options["guidata"][obj_name]:
+                    obj_data["visible"] = self._options["guidata"][obj_name]["visible"]
+
+            self._objects.append(obj_data)
+        print("objects",self._objects)
 
         os.remove(tmp.name)
 
