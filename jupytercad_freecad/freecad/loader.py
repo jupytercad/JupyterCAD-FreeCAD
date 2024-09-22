@@ -20,18 +20,19 @@ with redirect_stdout_stderr():
     except ImportError:
         fc = None
 
+
 def _rgb_to_hex(rgb):
     """Converts a list of RGB values [0-1] to a hex color string"""
-    return '#{:02x}{:02x}{:02x}'.format(
-        int(rgb[0] * 255),
-        int(rgb[1] * 255),
-        int(rgb[2] * 255)
+    return "#{:02x}{:02x}{:02x}".format(
+        int(rgb[0] * 255), int(rgb[1] * 255), int(rgb[2] * 255)
     )
+
 
 def _hex_to_rgb(hex_color):
     """Convert hex color string to an RGB tuple"""
     hex_color = hex_color.lstrip("#")
-    return tuple(int(hex_color[i:i+2], 16) / 255.0 for i in (0, 2, 4))
+    return tuple(int(hex_color[i : i + 2], 16) / 255.0 for i in (0, 2, 4))
+
 
 def _guidata_to_options(guidata):
     """Converts freecad guidata into options that JupyterCad understands"""
@@ -76,9 +77,7 @@ def _options_to_guidata(options):
         # Handle color property from JupyterCad to FreeCAD's ShapeColor
         if "color" in data:
             rgb_value = _hex_to_rgb(data["color"])
-            obj_data["ShapeColor"] = dict(
-                type="App::PropertyColor", value=rgb_value
-            )
+            obj_data["ShapeColor"] = dict(type="App::PropertyColor", value=rgb_value)
 
         # Handle visibility property from JupyterCad to FreeCAD's Visibility
         if "visible" in data:
@@ -147,7 +146,9 @@ class FCStd:
 
             if obj_name in self._options["guidata"]:
                 if "color" in self._options["guidata"][obj_name]:
-                    obj_data['parameters']["Color"] = self._options["guidata"][obj_name]["color"]
+                    obj_data["parameters"]["Color"] = self._options["guidata"][
+                        obj_name
+                    ]["color"]
                 if "visible" in self._options["guidata"][obj_name]:
                     obj_data["visible"] = self._options["guidata"][obj_name]["visible"]
 
@@ -201,9 +202,13 @@ class FCStd:
                                 if fc_value:
                                     setattr(fc_obj, prop, fc_value)
                         except AttributeError as e:
-                            print(f"Error accessing property '{prop}' on object '{fc_obj.Name}': {e}")
+                            print(
+                                f"Error accessing property '{prop}' on object '{fc_obj.Name}': {e}"
+                            )
                     else:
-                        print(f"Property '{prop}' does not exist on object '{fc_obj.Name}' and is not handled")
+                        print(
+                            f"Property '{prop}' does not exist on object '{fc_obj.Name}' and is not handled"
+                        )
 
                 if "Color" in py_obj["parameters"]:
                     new_hex_color = py_obj["parameters"]["Color"]
