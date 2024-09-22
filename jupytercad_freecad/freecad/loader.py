@@ -75,8 +75,9 @@ def _options_to_guidata(options):
 
         # Handle color property from JupyterCad to FreeCAD's ShapeColor
         if "color" in data:
+            rgb_value = _hex_to_rgb(data["color"])
             obj_data["ShapeColor"] = dict(
-                type="App::PropertyColor", value=tuple(data["color"])
+                type="App::PropertyColor", value=rgb_value
             )
 
         # Handle visibility property from JupyterCad to FreeCAD's Visibility
@@ -145,14 +146,12 @@ class FCStd:
             obj_data = self._fc_to_jcad_obj(obj)
 
             if obj_name in self._options["guidata"]:
-                print(obj_name, obj_data)
                 if "color" in self._options["guidata"][obj_name]:
                     obj_data['parameters']["Color"] = self._options["guidata"][obj_name]["color"]
                 if "visible" in self._options["guidata"][obj_name]:
                     obj_data["visible"] = self._options["guidata"][obj_name]["visible"]
 
             self._objects.append(obj_data)
-        print("objects",self._objects)
 
         os.remove(tmp.name)
 
@@ -179,6 +178,8 @@ class FCStd:
                 fc_file.addObject(py_obj["shape"], py_obj["name"])
             to_update = [x for x in new_objs if x in current_objs] + to_add
 
+            guidata = options.get("guidata", {})
+
             for obj_name in to_update:
                 py_obj = new_objs[obj_name]
 
@@ -186,55 +187,39 @@ class FCStd:
 
                 for prop, jcad_prop_value in py_obj["parameters"].items():
                     if hasattr(fc_obj, prop):
-                        prop_type = fc_obj.getTypeIdOfProperty(prop)
-                        prop_handler = self._prop_handlers.get(prop_type, None)
-                        if prop_handler is not None:
-                            fc_value = prop_handler.jcad_to_fc(
-                                jcad_prop_value,
-                                jcad_object=objects,
-                                fc_prop=getattr(fc_obj, prop),
-                                fc_object=fc_obj,
-                                fc_file=fc_file,
-                            )
-                            if fc_value:
-                                try:
+                        try:
+                            prop_type = fc_obj.getTypeIdOfProperty(prop)
+                            prop_handler = self._prop_handlers.get(prop_type, None)
+                            if prop_handler is not None:
+                                fc_value = prop_handler.jcad_to_fc(
+                                    jcad_prop_value,
+                                    jcad_object=objects,
+                                    fc_prop=getattr(fc_obj, prop),
+                                    fc_object=fc_obj,
+                                    fc_file=fc_file,
+                                )
+                                if fc_value:
                                     setattr(fc_obj, prop, fc_value)
-                                except Exception:
-                                    pass
+                        except AttributeError as e:
+                            print(f"Error accessing property '{prop}' on object '{fc_obj.Name}': {e}")
                     else:
-                        # Add the Color property if it doesn't exist
-                        if prop == "Color":
-                            try:
-                                color_value = (
-                                    tuple(jcad_prop_value)
-                                    if isinstance(jcad_prop_value, (list, tuple))
-                                    else (0.5, 0.5, 0.5)
-                                )
-                                if all(
-                                    isinstance(x, (int, float)) for x in color_value
-                                ):
-                                    fc_obj.addProperty(
-                                        "App::PropertyColor",
-                                        "Color",
-                                        "Base",
-                                        "A custom color property",
-                                    )
-                                    setattr(fc_obj, "Color", color_value)
-                                    logger.info(
-                                        f"Added Color property to object '{obj_name}'."
-                                    )
-                                else:
-                                    logger.error(
-                                        f"Invalid color value: {jcad_prop_value} for object '{obj_name}'"
-                                    )
-                            except Exception as e:
-                                logger.error(
-                                    f"Failed to add Color property to object '{obj_name}': {e}"
-                                )
+                        print(f"Property '{prop}' does not exist on object '{fc_obj.Name}' and is not handled")
+
+                if "Color" in py_obj["parameters"]:
+                    new_hex_color = py_obj["parameters"]["Color"]
+                else:
+                    new_hex_color = "#808080"  # Default to gray if no color is provided
+
+                if obj_name in guidata:
+                    guidata[obj_name]["color"] = new_hex_color
+                else:
+                    guidata[obj_name] = {"color": new_hex_color}
+
+            options["guidata"] = guidata
 
             OfflineRenderingUtils.save(
                 fc_file,
-                guidata=_options_to_guidata(options.get("guidata", {})),
+                guidata=_options_to_guidata(guidata),
             )
 
             fc_file.recompute()
