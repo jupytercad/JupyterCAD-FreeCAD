@@ -154,7 +154,9 @@ class FCStd:
                     )
                 if "visible" in self._options["guidata"][obj_name]:
                     gui_data_visible = self._options["guidata"][obj_name]["visible"]
-                    obj_data["visible"] = gui_data_visible if gui_data_visible is not None else True
+                    obj_data["visible"] = (
+                        gui_data_visible if gui_data_visible is not None else True
+                    )
 
             self._objects.append(obj_data)
 
