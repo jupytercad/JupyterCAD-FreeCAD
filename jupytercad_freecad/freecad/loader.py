@@ -146,13 +146,15 @@ class FCStd:
 
             if obj_name in self._options["guidata"]:
                 if "color" in self._options["guidata"][obj_name]:
+                    default_color = "#808080"
                     gui_data_color = self._options["guidata"][obj_name]["color"]
 
                     obj_data["parameters"]["Color"] = (
                         gui_data_color if gui_data_color else default_color
                     )
                 if "visible" in self._options["guidata"][obj_name]:
-                    obj_data["visible"] = self._options["guidata"][obj_name]["visible"]
+                    gui_data_visible = self._options["guidata"][obj_name]["visible"]
+                    obj_data["visible"] = gui_data_visible if gui_data_visible is not None else True
 
             self._objects.append(obj_data)
 
