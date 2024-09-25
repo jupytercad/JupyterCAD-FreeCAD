@@ -134,9 +134,7 @@ class FCStd:
         self._metadata = fc_file.Meta
 
         # Get GuiData and assign it to the internal attribute
-        self._guidata = _guidata_to_options(
-            OfflineRenderingUtils.getGuiData(tmp.name)
-        )
+        self._guidata = _guidata_to_options(OfflineRenderingUtils.getGuiData(tmp.name))
 
         # Get objects
         self._objects = []
