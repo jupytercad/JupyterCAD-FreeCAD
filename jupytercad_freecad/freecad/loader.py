@@ -98,6 +98,7 @@ class FCStd:
         self._metadata = {}
         self._id = None
         self._visible = True
+        self._guidata = {}
         self._prop_handlers: Dict[str, Type[BaseProp]] = {}
         for Cls in Props.__dict__.values():
             if isinstance(Cls, type) and issubclass(Cls, BaseProp):
@@ -132,8 +133,8 @@ class FCStd:
         # Get metadata
         self._metadata = fc_file.Meta
 
-        # Get GuiData (metadata from the GuiDocument.xml file)
-        self._options["guidata"] = _guidata_to_options(
+        # Get GuiData and assign it to the internal attribute
+        self._guidata = _guidata_to_options(
             OfflineRenderingUtils.getGuiData(tmp.name)
         )
 
@@ -144,16 +145,16 @@ class FCStd:
 
             obj_data = self._fc_to_jcad_obj(obj)
 
-            if obj_name in self._options["guidata"]:
-                if "color" in self._options["guidata"][obj_name]:
+            if obj_name in self._guidata:
+                if "color" in self._guidata[obj_name]:
                     default_color = "#808080"
-                    gui_data_color = self._options["guidata"][obj_name]["color"]
+                    gui_data_color = self._guidata[obj_name]["color"]
 
                     obj_data["parameters"]["Color"] = (
                         gui_data_color if gui_data_color else default_color
                     )
-                if "visible" in self._options["guidata"][obj_name]:
-                    gui_data_visible = self._options["guidata"][obj_name]["visible"]
+                if "visible" in self._guidata[obj_name]:
+                    gui_data_visible = self._guidata[obj_name]["visible"]
                     obj_data["visible"] = (
                         gui_data_visible if gui_data_visible is not None else True
                     )
@@ -185,11 +186,8 @@ class FCStd:
                 fc_file.addObject(py_obj["shape"], py_obj["name"])
             to_update = [x for x in new_objs if x in current_objs] + to_add
 
-            guidata = options.get("guidata", {})
-
             for obj_name in to_update:
                 py_obj = new_objs[obj_name]
-
                 fc_obj = fc_file.getObject(py_obj["name"])
 
                 for prop, jcad_prop_value in py_obj["parameters"].items():
@@ -216,21 +214,20 @@ class FCStd:
                             f"Property '{prop}' does not exist on object '{fc_obj.Name}' and is not handled"
                         )
 
+                # Handle updating the color in guidata
                 if "Color" in py_obj["parameters"]:
                     new_hex_color = py_obj["parameters"]["Color"]
                 else:
                     new_hex_color = "#808080"  # Default to gray if no color is provided
 
-                if obj_name in guidata:
-                    guidata[obj_name]["color"] = new_hex_color
+                if obj_name in self._guidata:
+                    self._guidata[obj_name]["color"] = new_hex_color
                 else:
-                    guidata[obj_name] = {"color": new_hex_color}
-
-            options["guidata"] = guidata
+                    self._guidata[obj_name] = {"color": new_hex_color}
 
             OfflineRenderingUtils.save(
                 fc_file,
-                guidata=_options_to_guidata(guidata),
+                guidata=_options_to_guidata(self._guidata),
             )
 
             fc_file.recompute()
