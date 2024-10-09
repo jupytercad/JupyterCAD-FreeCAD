@@ -2,6 +2,22 @@
 
 <!-- <START NEW CHANGELOG ENTRY> -->
 
+## 3.0.0a0
+
+([Full Changelog](https://github.com/jupytercad/JupyterCAD-FreeCAD/compare/v2.0.0...4f1234a586a5857215eb428bbd6399a3d427545f))
+
+### Maintenance and upkeep improvements
+
+- Make FreeCAD compatible after `guidata` removal [#12](https://github.com/jupytercad/JupyterCAD-FreeCAD/pull/12) ([@arjxn-py](https://github.com/arjxn-py))
+
+### Contributors to this release
+
+([GitHub contributors page for this release](https://github.com/jupytercad/JupyterCAD-FreeCAD/graphs/contributors?from=2024-07-02&to=2024-10-09&type=c))
+
+[@arjxn-py](https://github.com/search?q=repo%3Ajupytercad%2FJupyterCAD-FreeCAD+involves%3Aarjxn-py+updated%3A2024-07-02..2024-10-09&type=Issues) | [@pre-commit-ci](https://github.com/search?q=repo%3Ajupytercad%2FJupyterCAD-FreeCAD+involves%3Apre-commit-ci+updated%3A2024-07-02..2024-10-09&type=Issues)
+
+<!-- <END NEW CHANGELOG ENTRY> -->
+
 ## 2.0.0
 
 ([Full Changelog](https://github.com/jupytercad/JupyterCAD-FreeCAD/compare/v2.0.0a0...c7b2060ae1754a4061916d8e0c5f00dd5bcd58c1))
@@ -17,8 +33,6 @@
 ([GitHub contributors page for this release](https://github.com/jupytercad/JupyterCAD-FreeCAD/graphs/contributors?from=2024-02-28&to=2024-07-02&type=c))
 
 [@martinRenou](https://github.com/search?q=repo%3Ajupytercad%2FJupyterCAD-FreeCAD+involves%3AmartinRenou+updated%3A2024-02-28..2024-07-02&type=Issues) | [@pre-commit-ci](https://github.com/search?q=repo%3Ajupytercad%2FJupyterCAD-FreeCAD+involves%3Apre-commit-ci+updated%3A2024-02-28..2024-07-02&type=Issues)
-
-<!-- <END NEW CHANGELOG ENTRY> -->
 
 ## 2.0.0a0
 
