@@ -874,28 +874,29 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@jupyter/collaboration@npm:^2.0.0":
-  version: 2.0.2
-  resolution: "@jupyter/collaboration@npm:2.0.2"
+"@jupyter/collaboration@npm:^3.0.0":
+  version: 3.0.0
+  resolution: "@jupyter/collaboration@npm:3.0.0"
   dependencies:
     "@codemirror/state": ^6.2.0
     "@codemirror/view": ^6.7.0
-    "@jupyter/docprovider": ^2.0.2
     "@jupyterlab/apputils": ^4.0.5
     "@jupyterlab/coreutils": ^6.0.5
+    "@jupyterlab/docregistry": ^4.0.5
     "@jupyterlab/services": ^7.0.5
     "@jupyterlab/ui-components": ^4.0.5
     "@lumino/coreutils": ^2.1.0
+    "@lumino/signaling": ^2.0.0
     "@lumino/virtualdom": ^2.0.0
     "@lumino/widgets": ^2.1.0
     react: ^18.2.0
     y-protocols: ^1.0.5
     yjs: ^13.5.40
-  checksum: e45f7e0d6fd8d45a5df48da5cce74c7b9b64934af7276a4d29431d2c554ac69c3625452dad455457f62cc1d5e5d9a292971a7740429c9a68d8b00cf60a46898c
+  checksum: 8be72473e32395da724a071812de411c29b46d1c9ca9f97e0a17c53b51b01b3ff3b005b8a1775de68ce38b5cb2ea825bd124bc5dfdb052addec8a5276b21afc5
   languageName: node
   linkType: hard
 
-"@jupyter/docprovider@npm:^2.0.0, @jupyter/docprovider@npm:^2.0.2":
+"@jupyter/docprovider@npm:^2.0.0":
   version: 2.0.2
   resolution: "@jupyter/docprovider@npm:2.0.2"
   dependencies:
@@ -1067,7 +1068,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@jupytercad/jupytercad-freecad@workspace:."
   dependencies:
-    "@jupyter/collaboration": ^2.0.0
+    "@jupyter/collaboration": ^3.0.0
     "@jupyter/docprovider": ^2.0.0
     "@jupytercad/base": ^3.0.0-alpha.1
     "@jupytercad/jupytercad-core": ^3.0.0-alpha.1
@@ -1603,7 +1604,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@jupyterlab/docregistry@npm:^4.2.5":
+"@jupyterlab/docregistry@npm:^4.0.5, @jupyterlab/docregistry@npm:^4.2.5":
   version: 4.2.5
   resolution: "@jupyterlab/docregistry@npm:4.2.5"
   dependencies:
