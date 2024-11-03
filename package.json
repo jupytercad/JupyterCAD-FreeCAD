@@ -52,10 +52,10 @@
     },
     "dependencies": {
         "@jupyter/collaboration": "^3.0.0",
-        "@jupyter/docprovider": "^2.0.0",
-        "@jupytercad/base": "^3.0.0-alpha.1",
-        "@jupytercad/jupytercad-core": "^3.0.0-alpha.1",
-        "@jupytercad/schema": "^3.0.0-alpha.1",
+        "@jupyter/docprovider": "^3.0.0-rc.1",
+        "@jupytercad/base": "^3.0.0-alpha.5",
+        "@jupytercad/jupytercad-core": "^3.0.0-alpha.5",
+        "@jupytercad/schema": "^3.0.0-alpha.5",
         "@jupyterlab/application": "^4.0.0"
     },
     "devDependencies": {
