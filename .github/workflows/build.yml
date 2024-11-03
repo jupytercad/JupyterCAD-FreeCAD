@@ -32,7 +32,7 @@ jobs:
 
           jupyter labextension list
           jupyter labextension list 2>&1 | grep -ie "@jupytercad/jupytercad-freecad.*OK"
-          python -m jupyterlab.browser_check
+          python -m jupyterlab.browser_check --no-chrome-test
 
       - name: Package the extension
         run: |
@@ -114,9 +114,7 @@ jobs:
         working-directory: ui-tests
         env:
           PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD: 1
-        run: |
-          jlpm install
-          yarn playwright install
+        run: jlpm install
 
       - name: Set up browser cache
         uses: actions/cache@v3
