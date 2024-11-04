@@ -123,3 +123,4 @@ dmypy.json
 **/ui-tests/test-results/
 **/ui-tests/playwright-report/
 **/*/.jupyter_ystore.db
+*.db

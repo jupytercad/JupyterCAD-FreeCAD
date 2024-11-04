@@ -51,11 +51,10 @@
         "watch:labextension": "jupyter labextension watch ."
     },
     "dependencies": {
-        "@jupyter/collaboration": "^2.0.0",
-        "@jupyter/docprovider": "^2.0.0",
-        "@jupytercad/base": "^3.0.0-alpha.1",
-        "@jupytercad/jupytercad-core": "^3.0.0-alpha.1",
-        "@jupytercad/schema": "^3.0.0-alpha.1",
+        "@jupyter/collaborative-drive": "^3.0.0",
+        "@jupytercad/base": "^3.0.0-alpha.5",
+        "@jupytercad/jupytercad-core": "^3.0.0-alpha.5",
+        "@jupytercad/schema": "^3.0.0-alpha.5",
         "@jupyterlab/application": "^4.0.0"
     },
     "devDependencies": {
@@ -112,7 +111,7 @@
                 "singleton": true,
                 "bundled": false
             },
-            "@jupyter/docprovider": {
+            "@jupyter/collaborative-drive": {
                 "singleton": true,
                 "bundled": false
             }
