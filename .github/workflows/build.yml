@@ -107,7 +107,7 @@ jobs:
         shell: bash -l {0}
         run: |
           set -eux
-          pip install "jupyterlab>=4.0.0,<4.2.0" "jupytercad>=3.0.0a5" jupytercad_freecad*.whl
+          pip install "jupyterlab>=4.0.0,<4.2.0" "jupytercad>=3.0.0a6" jupytercad_freecad*.whl
 
       - name: Install dependencies
         shell: bash -l {0}

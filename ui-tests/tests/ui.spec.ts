@@ -206,10 +206,6 @@ test.describe('UI Test', () => {
         .locator('[data-test-id="react-tree-root"]')
         .getByText('myBox')
         .click();
-      await page
-        .locator('[data-test-id="react-tree-root"]')
-        .getByText('Shape')
-        .click();
       await page.getByLabel('Height*').click();
       await page.getByLabel('Height*').fill('32');
       await page.getByRole('button', { name: 'Submit' }).click();
@@ -278,6 +274,9 @@ test.describe('UI Test', () => {
         .getByText('Cut')
         .click();
 
+      await page.sidebar.close('left');
+      await page.sidebar.close('right');
+
       let main = await page.$('#jp-main-split-panel');
       if (main) {
         expect(await main.screenshot()).toMatchSnapshot({
@@ -288,7 +287,7 @@ test.describe('UI Test', () => {
       await page.waitForTimeout(1000);
 
       // Apply a cut operator from the selection
-      await page.getByTitle('Cut', { exact: true }).click();
+      await page.getByTitle('Cut (Ctrl+Alt+X)', { exact: true }).click();
       await page
         .locator('.jp-Dialog-body')
         .locator('div.jp-Dialog-buttonLabel', {
