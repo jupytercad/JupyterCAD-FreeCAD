@@ -19,6 +19,7 @@ import {
   showErrorMessage,
   WidgetTracker
 } from '@jupyterlab/apputils';
+import { LabIcon } from '@jupyterlab/ui-components';
 
 import { JupyterCadWidgetFactory } from '@jupytercad/jupytercad-core';
 import {
@@ -28,6 +29,13 @@ import {
 } from '@jupytercad/schema';
 import { requestAPI } from '@jupytercad/base';
 import { JupyterCadFCModelFactory } from './modelfactory';
+import freecadIconSvg from '../style/freecad.svg';
+
+const freecadIcon = new LabIcon({
+  name: 'jupytercad:stp',
+  svgstr: freecadIconSvg
+});
+
 
 const FACTORY = 'Jupytercad Freecad Factory';
 
@@ -84,7 +92,8 @@ const activate = async (
     mimeTypes: ['application/octet-stream'],
     extensions: ['.FCStd', 'fcstd'],
     fileFormat: 'base64',
-    contentType: 'FCStd'
+    contentType: 'FCStd',
+    icon: freecadIcon
   });
 
   const FCStdSharedModelFactory: SharedDocumentFactory = () => {
@@ -96,6 +105,7 @@ const activate = async (
   );
 
   widgetFactory.widgetCreated.connect((sender, widget) => {
+    widget.title.icon = freecadIcon;
     // Notify the instance tracker if restore data needs to update.
     widget.context.pathChanged.connect(() => {
       tracker.save(widget);
