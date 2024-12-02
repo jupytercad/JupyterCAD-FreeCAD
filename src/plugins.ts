@@ -36,7 +36,6 @@ const freecadIcon = new LabIcon({
   svgstr: freecadIconSvg
 });
 
-
 const FACTORY = 'Jupytercad Freecad Factory';
 
 const activate = async (
