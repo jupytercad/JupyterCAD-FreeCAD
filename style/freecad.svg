@@ -31,11 +31,7 @@
        d="M 6,0 2,4 V 20 L 6,16 V 4 h 8 l 4,-4 z"
        fill="#cb333b"
        style="fill-rule:evenodd;stroke-width:2.64567;stroke-linecap:square"
-       id="path3" /><path
-       class="jp-icon-selectable"
-       d="M 5.9999997,19.999743 H 10.000258 V 15.000065 H 14 V 10.999806 H 10.000258 V 8.0000004 h 8 V 3.9997423 H 5.9999997 Z"
-       fill="#fefefe"
-       style="fill-rule:evenodd;stroke:none;stroke-width:2.64567;stroke-linecap:square"
-       id="path9" /></g><metadata
+       id="path3" />
+       </g><metadata
      id="metadata11"><rdf:RDF><cc:Work
          rdf:about=""><dc:title>FreeCAD</dc:title></cc:Work></rdf:RDF></metadata></svg>
