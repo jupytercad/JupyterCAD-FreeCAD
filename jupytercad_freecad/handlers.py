@@ -1,6 +1,5 @@
 import json
 import base64
-import tempfile
 from pathlib import Path
 
 from jupyter_server.base.handlers import APIHandler
@@ -8,6 +7,7 @@ from jupyter_server.utils import url_path_join, ApiPath, to_os_path
 import tornado
 
 from jupytercad_freecad.freecad.loader import FCStd
+
 
 class BackendCheckHandler(APIHandler):
     @tornado.web.authenticated
@@ -25,6 +25,7 @@ class BackendCheckHandler(APIHandler):
             self.finish(json.dumps({"installed": True}))
         else:
             self.finish(json.dumps({"installed": False}))
+
 
 class JCadExportHandler(APIHandler):
     @tornado.web.authenticated
@@ -81,6 +82,14 @@ def setup_handlers(web_app):
 
     base_url = web_app.settings["base_url"]
 
-    handlers = [(url_path_join(base_url, "jupytercad_freecad", "backend-check"), BackendCheckHandler), 
-                (url_path_join(base_url, "jupytercad_freecad", "export-jcad"), JCadExportHandler)]
+    handlers = [
+        (
+            url_path_join(base_url, "jupytercad_freecad", "backend-check"),
+            BackendCheckHandler,
+        ),
+        (
+            url_path_join(base_url, "jupytercad_freecad", "export-jcad"),
+            JCadExportHandler,
+        ),
+    ]
     web_app.add_handlers(host_pattern, handlers)
