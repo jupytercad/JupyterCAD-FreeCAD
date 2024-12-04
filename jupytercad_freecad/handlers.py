@@ -80,9 +80,7 @@ def setup_handlers(web_app):
     host_pattern = ".*$"
 
     base_url = web_app.settings["base_url"]
-    route_pattern = url_path_join(base_url, "jupytercad_freecad", "backend-check")
-    handlers = [(route_pattern, BackendCheckHandler)]
 
-    route_pattern = url_path_join(base_url, "jupytercad_freecad", "export-jcad")
-    handlers = [(route_pattern, JCadExportHandler)]
+    handlers = [(url_path_join(base_url, "jupytercad_freecad", "backend-check"), BackendCheckHandler), 
+                (url_path_join(base_url, "jupytercad_freecad", "export-jcad"), JCadExportHandler)]
     web_app.add_handlers(host_pattern, handlers)
