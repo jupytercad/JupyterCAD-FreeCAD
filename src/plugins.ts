@@ -39,7 +39,7 @@ const freecadIcon = new LabIcon({
 const FACTORY = 'Jupytercad Freecad Factory';
 
 class JupyterCadFCstdDoc extends JupyterCadDoc {
-  toJcadEndpoint = 'jupytercad/export';
+  toJcadEndpoint = 'jupytercad_freecad/export-jcad';
 }
 
 const activate = async (
