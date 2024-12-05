@@ -130,14 +130,8 @@ test.describe('UI Test', () => {
       });
       await accept.click();
 
-      await page
-        .getByRole('tablist', { name: 'main sidebar' })
-        .getByRole('tab', { name: 'JupyterCad Control Panel' })
-        .click();
-      await page
-        .getByRole('tablist', { name: 'alternate sidebar' })
-        .getByRole('tab', { name: 'JupyterCad Control Panel' })
-        .click();
+      await page.sidebar.close('left');
+      await page.sidebar.close('right');
 
       await page.waitForTimeout(1000);
       expect(errors).toBe(0);
@@ -172,14 +166,8 @@ test.describe('UI Test', () => {
         await page.getByRole('button', { name: 'Ok' }).click();
       }
 
-      await page
-        .getByRole('tablist', { name: 'main sidebar' })
-        .getByRole('tab', { name: 'JupyterCad Control Panel' })
-        .click();
-      await page
-        .getByRole('tablist', { name: 'alternate sidebar' })
-        .getByRole('tab', { name: 'JupyterCad Control Panel' })
-        .click();
+      await page.sidebar.close('left');
+      await page.sidebar.close('right');
 
       await page.waitForTimeout(1000);
       expect(errors).toBe(0);
@@ -216,14 +204,8 @@ test.describe('UI Test', () => {
         .click();
 
       // Hide side bars for the screenshot
-      await page
-        .getByRole('tablist', { name: 'main sidebar' })
-        .getByRole('tab', { name: 'JupyterCad Control Panel' })
-        .click();
-      await page
-        .getByRole('tablist', { name: 'alternate sidebar' })
-        .getByRole('tab', { name: 'JupyterCad Control Panel' })
-        .click();
+      await page.sidebar.close('left');
+      await page.sidebar.close('right');
 
       await page.waitForTimeout(1000);
       expect(errors).toBe(0);
