@@ -1,6 +1,6 @@
 {
     "name": "@jupytercad/jupytercad-freecad",
-    "version": "3.0.0-a1",
+    "version": "3.0.0",
     "description": "A JupyterCAD extension for FreeCAD.",
     "keywords": [
         "jupyter",

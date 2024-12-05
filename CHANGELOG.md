@@ -2,6 +2,27 @@
 
 <!-- <START NEW CHANGELOG ENTRY> -->
 
+## 3.0.0
+
+([Full Changelog](https://github.com/jupytercad/JupyterCAD-FreeCAD/compare/v3.0.0a1...eb212b1625de7623fbd44f9db32c246934cbcb41))
+
+### Enhancements made
+
+- Bump JupyterCAD 3.0.0 [#28](https://github.com/jupytercad/JupyterCAD-FreeCAD/pull/28) ([@martinRenou](https://github.com/martinRenou))
+- Add freecad icon [#21](https://github.com/jupytercad/JupyterCAD-FreeCAD/pull/21) ([@martinRenou](https://github.com/martinRenou))
+
+### Maintenance and upkeep improvements
+
+- Enable the Playwright trace [#29](https://github.com/jupytercad/JupyterCAD-FreeCAD/pull/29) ([@jtpio](https://github.com/jtpio))
+
+### Contributors to this release
+
+([GitHub contributors page for this release](https://github.com/jupytercad/JupyterCAD-FreeCAD/graphs/contributors?from=2024-11-04&to=2024-12-05&type=c))
+
+[@jtpio](https://github.com/search?q=repo%3Ajupytercad%2FJupyterCAD-FreeCAD+involves%3Ajtpio+updated%3A2024-11-04..2024-12-05&type=Issues) | [@martinRenou](https://github.com/search?q=repo%3Ajupytercad%2FJupyterCAD-FreeCAD+involves%3AmartinRenou+updated%3A2024-11-04..2024-12-05&type=Issues) | [@pre-commit-ci](https://github.com/search?q=repo%3Ajupytercad%2FJupyterCAD-FreeCAD+involves%3Apre-commit-ci+updated%3A2024-11-04..2024-12-05&type=Issues) | [@SylvainCorlay](https://github.com/search?q=repo%3Ajupytercad%2FJupyterCAD-FreeCAD+involves%3ASylvainCorlay+updated%3A2024-11-04..2024-12-05&type=Issues)
+
+<!-- <END NEW CHANGELOG ENTRY> -->
+
 ## 3.0.0a1
 
 ([Full Changelog](https://github.com/jupytercad/JupyterCAD-FreeCAD/compare/v3.0.0a0...f011fd8d0b58f1568cbf25ac4ea6d8596a97799c))
@@ -20,8 +41,6 @@
 ([GitHub contributors page for this release](https://github.com/jupytercad/JupyterCAD-FreeCAD/graphs/contributors?from=2024-10-09&to=2024-11-04&type=c))
 
 [@arjxn-py](https://github.com/search?q=repo%3Ajupytercad%2FJupyterCAD-FreeCAD+involves%3Aarjxn-py+updated%3A2024-10-09..2024-11-04&type=Issues) | [@pre-commit-ci](https://github.com/search?q=repo%3Ajupytercad%2FJupyterCAD-FreeCAD+involves%3Apre-commit-ci+updated%3A2024-10-09..2024-11-04&type=Issues)
-
-<!-- <END NEW CHANGELOG ENTRY> -->
 
 ## 3.0.0a0
 
