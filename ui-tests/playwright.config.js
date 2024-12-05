@@ -14,7 +14,7 @@ module.exports = {
   retries: 0,
   use: {
     ...baseConfig.use,
-    trace: 'off'
+    trace: 'on-first-retry'
   },
   expect: {
     toMatchSnapshot: {
