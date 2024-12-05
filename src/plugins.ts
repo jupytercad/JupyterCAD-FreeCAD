@@ -104,7 +104,7 @@ const activate = async (
   );
 
   widgetFactory.widgetCreated.connect((sender, widget) => {
-    widget.title.icon = freecadIcon;
+    // widget.title.icon = freecadIcon;
     // Notify the instance tracker if restore data needs to update.
     widget.context.pathChanged.connect(() => {
       tracker.save(widget);
