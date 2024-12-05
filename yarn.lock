@@ -886,6 +886,18 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@jupyter/collaborative-drive@npm:^3.1.0-alpha.0":
+  version: 3.1.0-rc.0
+  resolution: "@jupyter/collaborative-drive@npm:3.1.0-rc.0"
+  dependencies:
+    "@jupyter/ydoc": ^2.0.0 || ^3.0.0
+    "@jupyterlab/services": ^7.2.0
+    "@lumino/coreutils": ^2.1.0
+    "@lumino/disposable": ^2.1.0
+  checksum: 71de8568f3cbe8d296e0edc10829c586d4f2b7ca25e7a3c610c24622b82f3b2ea316b45f3e6332ee63f10649d0d340109fdaf182938646214dd93ffc7b20b56a
+  languageName: node
+  linkType: hard
+
 "@jupyter/react-components@npm:^0.15.3":
   version: 0.15.3
   resolution: "@jupyter/react-components@npm:0.15.3"
@@ -965,15 +977,15 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@jupytercad/base@npm:^3.0.0-alpha.5":
-  version: 3.0.0-alpha.5
-  resolution: "@jupytercad/base@npm:3.0.0-alpha.5"
+"@jupytercad/base@npm:^3.0.0":
+  version: 3.0.0
+  resolution: "@jupytercad/base@npm:3.0.0"
   dependencies:
     "@deathbeds/jupyterlab-rjsf": ^1.1.0
-    "@jupyter/collaborative-drive": ^3.0.0
+    "@jupyter/collaborative-drive": ^3.1.0-alpha.0
     "@jupyter/ydoc": ^3.0.0
-    "@jupytercad/occ-worker": ^3.0.0-alpha.5
-    "@jupytercad/schema": ^3.0.0-alpha.5
+    "@jupytercad/occ-worker": ^3.0.0
+    "@jupytercad/schema": ^3.0.0
     "@jupyterlab/application": ^4.0.0
     "@jupyterlab/apputils": ^4.0.0
     "@jupyterlab/completer": ^4.2.4
@@ -1000,18 +1012,18 @@ __metadata:
     three: ^0.168.0
     three-mesh-bvh: ^0.7.8
     uuid: ^8.3.2
-  checksum: 3a7986627352be10dbebc8c79ce16b5f159842f1c52babb8b86c6ade2fa38242a89ce51bb4c764e4ff6d5505ec762e536d3a3d066519b8cc5dcc1e272b4452c0
+  checksum: b19f2bd128d6ccb3ecd6f34f71a191388bcb378c7bfbfa79c410aa006a680266dcf35b8de24ab430c4f9aa68b61eebbe1994ee23bd64289b6cbf75d3e153215c
   languageName: node
   linkType: hard
 
-"@jupytercad/jupytercad-core@npm:^3.0.0-alpha.5":
-  version: 3.0.0-alpha.5
-  resolution: "@jupytercad/jupytercad-core@npm:3.0.0-alpha.5"
+"@jupytercad/jupytercad-core@npm:^3.0.0":
+  version: 3.0.0
+  resolution: "@jupytercad/jupytercad-core@npm:3.0.0"
   dependencies:
-    "@jupyter/collaborative-drive": ^3.0.0
-    "@jupytercad/base": ^3.0.0-alpha.5
-    "@jupytercad/occ-worker": ^3.0.0-alpha.5
-    "@jupytercad/schema": ^3.0.0-alpha.5
+    "@jupyter/collaborative-drive": ^3.1.0-alpha.0
+    "@jupytercad/base": ^3.0.0
+    "@jupytercad/occ-worker": ^3.0.0
+    "@jupytercad/schema": ^3.0.0
     "@jupyterlab/application": ^4.0.0
     "@jupyterlab/apputils": ^4.0.0
     "@jupyterlab/docregistry": ^4.0.0
@@ -1023,7 +1035,7 @@ __metadata:
     "@jupyterlab/ui-components": ^4.0.0
     "@lumino/commands": ^2.0.0
     util: ^0.12.5
-  checksum: 1dd185aad7ba0298c5b75acf1f2b1673e86057f6d26cb20eed6fdf2de7559a3682fb095213795c30397de37c7b6e8de81de851470e226a257d301292d3cc38bc
+  checksum: f20c0796453a4ad2f11ee3f02af669b3e31d8f32d578cf189181c0ab6b047c21f7dd9330dcc96c7b97bf0c96d7ee700b17f48644ca113dc66696dbe55db9f54c
   languageName: node
   linkType: hard
 
@@ -1032,9 +1044,9 @@ __metadata:
   resolution: "@jupytercad/jupytercad-freecad@workspace:."
   dependencies:
     "@jupyter/collaborative-drive": ^3.0.0
-    "@jupytercad/base": ^3.0.0-alpha.5
-    "@jupytercad/jupytercad-core": ^3.0.0-alpha.5
-    "@jupytercad/schema": ^3.0.0-alpha.5
+    "@jupytercad/base": ^3.0.0
+    "@jupytercad/jupytercad-core": ^3.0.0
+    "@jupytercad/schema": ^3.0.0
     "@jupyterlab/application": ^4.0.0
     "@jupyterlab/builder": ^4.0.0
     "@types/json-schema": ^7.0.11
@@ -1061,28 +1073,28 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@jupytercad/occ-worker@npm:^3.0.0-alpha.5":
-  version: 3.0.0-alpha.5
-  resolution: "@jupytercad/occ-worker@npm:3.0.0-alpha.5"
+"@jupytercad/occ-worker@npm:^3.0.0":
+  version: 3.0.0
+  resolution: "@jupytercad/occ-worker@npm:3.0.0"
   dependencies:
-    "@jupytercad/opencascade": ^3.0.0-alpha.5
-    "@jupytercad/schema": ^3.0.0-alpha.5
+    "@jupytercad/opencascade": ^3.0.0
+    "@jupytercad/schema": ^3.0.0
     "@lumino/coreutils": ^2.0.0
     uuid: ^8.3.2
-  checksum: 817c0e73715b94a175eccb7213ef67559d7dd7675de2ca5a925d11d2a5fbfd0daa91c415f7a3b2b1a787b406689098a8435fe65be0cabf6da4aee4b0b5884660
+  checksum: e225571c260ed970724b3ee9c6ab54acc965565acff8db1a881e401f5507c35be8af1692947369e6669774cb4256d8193e39d6d2d99c10803867dd3eeb6390ba
   languageName: node
   linkType: hard
 
-"@jupytercad/opencascade@npm:^3.0.0-alpha.5":
-  version: 3.0.0-alpha.5
-  resolution: "@jupytercad/opencascade@npm:3.0.0-alpha.5"
-  checksum: b2d29cbb295e4ca44e7cf2f1e9c53807d78e53be076ce60f13623a6473e5ef5b7c6c0c259f8a38fcdffb6456caf9f7a9b439cd1c7c88aa6c2d65576f4390a51f
+"@jupytercad/opencascade@npm:^3.0.0":
+  version: 3.0.0
+  resolution: "@jupytercad/opencascade@npm:3.0.0"
+  checksum: 2f1846b9d3c346a96767b7b1ca7b5ee4843c3a7e2326eb55a46ec2f59781d3fb83b4ed49111ec747a9fa9e672a9437c25f46a328e472253efbeb826420ad5a26
   languageName: node
   linkType: hard
 
-"@jupytercad/schema@npm:^3.0.0-alpha.5":
-  version: 3.0.0-alpha.5
-  resolution: "@jupytercad/schema@npm:3.0.0-alpha.5"
+"@jupytercad/schema@npm:^3.0.0":
+  version: 3.0.0
+  resolution: "@jupytercad/schema@npm:3.0.0"
   dependencies:
     "@apidevtools/json-schema-ref-parser": ^9.0.9
     "@jupyter/ydoc": ^3.0.0
@@ -1096,7 +1108,7 @@ __metadata:
     ajv: ^8.16.0
     json-schema-to-typescript: ^10.1.5
     yjs: ^13.5.40
-  checksum: 7520abbbd9bdec29aaa795df20edcd74282501a3f12cce75e2632cdccbcb9ba4e4c776f7c724a2e0642977be0b493cef884ace4116e346cf2c671fbeb655462e
+  checksum: 5b0bb1edb1bbf1661770fbedf11d0ba59a6ee2a66dc0b6d6ab3eb450b34539ae285f108912bd62cbc0f9118f977ec0c88d219c1946ba6afeb1068eed41add312
   languageName: node
   linkType: hard
 
