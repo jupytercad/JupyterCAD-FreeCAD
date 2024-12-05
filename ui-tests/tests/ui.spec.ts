@@ -64,7 +64,8 @@ test.describe('UI Test', () => {
       }) => {
         await page.goto();
         const fullPath = `examples/${file}`;
-        await page.notebook.openByPath(fullPath);
+        page.notebook.openByPath(fullPath);
+        await page.waitForTimeout(500);
         await page.notebook.activate(fullPath);
         await page.locator('div.jpcad-Spinner').waitFor({ state: 'hidden' });
         await page.waitForTimeout(1000);
@@ -115,7 +116,8 @@ test.describe('UI Test', () => {
 
       const fileName = 'example2.FCStd';
       const fullPath = `examples/${fileName}`;
-      await page.notebook.openByPath(fullPath);
+      page.notebook.openByPath(fullPath);
+      await page.waitForTimeout(500);
       await page.notebook.activate(fullPath);
       await page.locator('div.jpcad-Spinner').waitFor({ state: 'hidden' });
 
@@ -149,7 +151,8 @@ test.describe('UI Test', () => {
 
       const fileName = 'example3.FCStd';
       const fullPath = `examples/${fileName}`;
-      await page.notebook.openByPath(fullPath);
+      page.notebook.openByPath(fullPath);
+      await page.waitForTimeout(500);
       await page.notebook.activate(fullPath);
       await page.locator('div.jpcad-Spinner').waitFor({ state: 'hidden' });
       await page
@@ -185,7 +188,8 @@ test.describe('UI Test', () => {
 
       const fileName = 'example4.FCStd';
       const fullPath = `examples/${fileName}`;
-      await page.notebook.openByPath(fullPath);
+      page.notebook.openByPath(fullPath);
+      await page.waitForTimeout(500);
       await page.notebook.activate(fullPath);
       await page.locator('div.jpcad-Spinner').waitFor({ state: 'hidden' });
 
@@ -223,7 +227,8 @@ test.describe('UI Test', () => {
 
       const fileName = 'example3.FCStd';
       const fullPath = `examples/${fileName}`;
-      await page.notebook.openByPath(fullPath);
+      page.notebook.openByPath(fullPath);
+      await page.waitForTimeout(500);
       await page.notebook.activate(fullPath);
       await page.locator('div.jpcad-Spinner').waitFor({ state: 'hidden' });
 
