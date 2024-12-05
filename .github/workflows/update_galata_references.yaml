@@ -89,7 +89,7 @@ jobs:
         shell: bash -l {0}
         run: |
           whereis python
-          pip install "jupyterlab>=4.0.0,<5" "jupytercad>=3.0.0a6" jupytercad_freecad*.whl
+          pip install "jupytercad>=3.0.0" jupytercad_freecad*.whl
 
       - name: Install dependencies
         shell: bash -l {0}
