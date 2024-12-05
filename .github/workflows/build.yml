@@ -94,8 +94,8 @@ jobs:
           micromamba-version: '1.5.5-0'
           environment-name: cad
           create-args: >-
-            python=3.10
-            jupyterlab=4
+            python=3.9
+            jupyterlab
             freecad=0.21.2
 
       - name: Download extension package
@@ -107,7 +107,7 @@ jobs:
         shell: bash -l {0}
         run: |
           set -eux
-          pip install "jupyterlab>=4.0.0,<4.2.0" "jupytercad>=3.0.0a6" jupytercad_freecad*.whl
+          pip install "jupytercad>=3.0.0" jupytercad_freecad*.whl
 
       - name: Install dependencies
         shell: bash -l {0}

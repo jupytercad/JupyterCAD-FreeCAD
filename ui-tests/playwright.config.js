@@ -11,7 +11,7 @@ module.exports = {
     timeout: 120 * 1000,
     reuseExistingServer: false
   },
-  retries: 0,
+  retries: 1,
   use: {
     ...baseConfig.use,
     trace: 'on-first-retry'

@@ -52,9 +52,9 @@
     },
     "dependencies": {
         "@jupyter/collaborative-drive": "^3.0.0",
-        "@jupytercad/base": "^3.0.0-alpha.5",
-        "@jupytercad/jupytercad-core": "^3.0.0-alpha.5",
-        "@jupytercad/schema": "^3.0.0-alpha.5",
+        "@jupytercad/base": "^3.0.0",
+        "@jupytercad/jupytercad-core": "^3.0.0",
+        "@jupytercad/schema": "^3.0.0",
         "@jupyterlab/application": "^4.0.0"
     },
     "devDependencies": {
