@@ -38,6 +38,10 @@ const freecadIcon = new LabIcon({
 
 const FACTORY = 'Jupytercad Freecad Factory';
 
+class JupyterCadFCstdDoc extends JupyterCadDoc {
+  toJcadEndpoint = 'jupytercad_freecad/export-jcad';
+}
+
 const activate = async (
   app: JupyterFrontEnd,
   tracker: WidgetTracker<IJupyterCadWidget>,
@@ -96,7 +100,7 @@ const activate = async (
   });
 
   const FCStdSharedModelFactory: SharedDocumentFactory = () => {
-    return new JupyterCadDoc();
+    return new JupyterCadFCstdDoc();
   };
   drive.sharedModelFactory.registerDocumentFactory(
     'FCStd',
