@@ -32,7 +32,15 @@ class JCadExportHandler(APIHandler):
     def post(self):
         body = self.get_json_body()
 
-        file_name = body["path"].split(":")[1]
+        # Works with both prefixed and unprefixed paths
+        path = body.get("path", "")
+        parts = path.split(":", 1) 
+
+        if len(parts) == 2:
+            file_name = parts[1]
+        else:
+            file_name = parts[0]  # fallback: treat whole thing as path
+
         export_name = body["newName"]
 
         root_dir = Path(self.contents_manager.root_dir).resolve()
