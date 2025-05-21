@@ -34,7 +34,7 @@ class JCadExportHandler(APIHandler):
 
         # Works with both prefixed and unprefixed paths
         path = body.get("path", "")
-        parts = path.split(":", 1) 
+        parts = path.split(":", 1)
 
         if len(parts) == 2:
             file_name = parts[1]
