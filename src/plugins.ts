@@ -40,6 +40,7 @@ const FACTORY = 'Jupytercad Freecad Factory';
 
 class JupyterCadFCstdDoc extends JupyterCadDoc {
   toJcadEndpoint = 'jupytercad_freecad/export-jcad';
+  toFcstdEndpoint = 'jupytercad_freecad/export-fcstd';
 }
 
 const activate = async (
