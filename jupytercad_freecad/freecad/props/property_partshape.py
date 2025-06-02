@@ -17,5 +17,28 @@ class Part_PropertyPartShape(BaseProp):
 
     @staticmethod
     def jcad_to_fc(prop_value: str, **kwargs) -> Any:
-        """PropertyPartShape is readonly"""
-        return None
+        try:
+            import freecad as fc
+            import Part as Part
+        except ImportError:
+            print("Error: FreeCAD or Part module could not be imported in jcad_to_fc.")
+            return None
+
+        if not prop_value:
+            print("Warning: jcad_to_fc received empty prop_value for PartShape.")
+            return None
+
+        try:
+            shape = Part.Shape()
+            # Use importBrepFromString as it's more specific for BREP strings
+            shape.importBrepFromString(prop_value) 
+            
+            if shape.isNull():
+                print(f"Warning: Reconstructed shape is Null after importBrepFromString. Input (first 100 chars): {prop_value[:100]}...")
+                return None # Return None if shape is Null
+
+            return shape
+        except Exception as e:
+            # Log the actual exception and part of the problematic string
+            print(f"Failed to rebuild BRep shape with importBrepFromString: {e}. Input (first 100 chars): {prop_value[:100]}...")
+            return None
