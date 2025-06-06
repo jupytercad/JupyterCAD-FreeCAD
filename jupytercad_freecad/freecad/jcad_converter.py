@@ -50,7 +50,6 @@ def create_body_and_coordinates(doc, body_obj, fc_objects):
     fc_objects["Origin"] = body_fc.Origin
     for child in body_fc.Origin.Group:
         role = getattr(child, "Role", "")
-        # Role is typically "X_Axis", "Y_Axis", "Z_Axis", "XY_Plane", etc.
         if role in {"X_Axis", "Y_Axis", "Z_Axis", "XY_Plane", "XZ_Plane", "YZ_Plane"}:
             fc_objects[role] = child
 
@@ -90,19 +89,20 @@ def export_jcad_to_fcstd(jcad_dict: dict) -> "fc.Document":
         "Origin", "X_Axis", "Y_Axis", "Z_Axis", "XY_Plane", "XZ_Plane", "YZ_Plane"
     }
 
-    # 1) Sanitize all JCAD object names and build a mapping
-    name_mapping = {
-        obj["name"]: sanitize_object_name(obj["name"])
-        for obj in jcad_dict.get("objects", [])
-    }
+    # 1) Sanitize JCAD names in place and build a mapping
+    name_mapping = {}
     for obj in jcad_dict.get("objects", []):
-        obj["name"] = name_mapping[obj["name"]]
+        original = obj["name"]
+        sanitized = sanitize_object_name(original)
+        name_mapping[original] = sanitized
+        obj["name"] = sanitized
+
     update_references(jcad_dict, name_mapping)
 
     fc_objects = {}
-    guidata = {}  # objectName → { "ShapeColor": (r,g,b), "Visibility": bool }
+    guidata = {}
 
-    # 2) Separate out any PartDesign::Body objects
+    # 2) Separate PartDesign::Body entries from others
     body_objs = [
         o for o in jcad_dict.get("objects", [])
         if o["shape"] == "PartDesign::Body"
@@ -112,75 +112,68 @@ def export_jcad_to_fcstd(jcad_dict: dict) -> "fc.Document":
         if o not in body_objs and o["name"] not in coordinate_names
     ]
 
-    # 3) Create bodies (so that coordinate system objects appear)
+    # Helper: determine RGB tuple and visibility flag
+    def _color_and_visibility(jcad_obj):
+        opts = jcad_dict.get("options", {}).get(jcad_obj["name"], {})
+        hexcol = (
+            jcad_obj.get("parameters", {}).get("Color")
+            or opts.get("color", "#808080")
+        )
+        rgb = _hex_to_rgb(hexcol)
+        visible = opts.get("visible")
+        if visible is None:
+            visible = jcad_obj.get("visible", True)
+        return rgb, visible
+
+    # 3) Create all PartDesign::Body objects
     for body_obj in body_objs:
         body_fc = create_body_and_coordinates(doc, body_obj, fc_objects)
         apply_object_properties(body_fc, body_obj, prop_handlers, doc)
 
-        # Record body color
-        hexcol = body_obj.get("parameters", {}).get("Color") or \
-                 (jcad_dict.get("options", {}).get(body_obj["name"], {}).get("color") or "#808080")
-        rgb = _hex_to_rgb(hexcol)
-
-        # Instead of just building color_map, build a complete guidata dictionary
-        body_opts = jcad_dict.get("options", {}).get(body_obj["name"], {})
-        # Check visibility: prioritize options, then object-level visible, default to True
-        visible = body_opts.get("visible")
-        if visible is None:
-            visible = body_obj.get("visible", True)
-        
+        rgb, visible = _color_and_visibility(body_obj)
         guidata[body_obj["name"]] = {
             "ShapeColor": {"type": "App::PropertyColor", "value": rgb},
             "Visibility": {"type": "App::PropertyBool", "value": visible},
         }
 
-        # Any coordinate‐system objects that now exist should inherit the same color
-        for coord_name in coordinate_names:
-            if coord_name in fc_objects:
-                guidata[coord_name] = {
+        # Coordinate children inherit the same color but remain hidden
+        for coord in coordinate_names:
+            if coord in fc_objects:
+                guidata[coord] = {
                     "ShapeColor": {"type": "App::PropertyColor", "value": rgb},
-                    "Visibility": {"type": "App::PropertyBool", "value": False},  # Usually coordinate objects are hidden
+                    "Visibility": {"type": "App::PropertyBool", "value": False},
                 }
 
-    # 4) Create all other (non-body, non-coordinate) objects
+    # 4) Create all other objects
     for obj in other_objs:
         fc_obj = doc.addObject(obj["shape"], obj["name"])
         fc_objects[obj["name"]] = fc_obj
         apply_object_properties(fc_obj, obj, prop_handlers, doc)
 
-        # Instead of just building color_map, build a complete guidata dictionary
-        obj_opts = jcad_dict.get("options", {}).get(obj["name"], {})
-        hexcol = obj.get("parameters", {}).get("Color") or obj_opts.get("color", "#808080")
-        # Check visibility: prioritize options, then object-level visible, default to True
-        visible = obj_opts.get("visible")
-        if visible is None:
-            visible = obj.get("visible", True)
-
-        # Build guidata entry with both color and visibility
+        rgb, visible = _color_and_visibility(obj)
+        default_camera = (
+        "OrthographicCamera {\n"
+        "    viewportMapping ADJUST_CAMERA\n"
+        "    position 5.0 0.0 10.0\n"
+        "    orientation 0.7 0.2 0.4 1.0\n"
+        "    nearDistance 0.2\n"
+        "    farDistance 20.0\n"
+        "    aspectRatio 1.0\n"
+        "    focalDistance 8.0\n"
+        "    height 16.0\n"
+        "}")
         guidata[obj["name"]] = {
-            "ShapeColor": {"type": "App::PropertyColor", "value": _hex_to_rgb(hexcol)},
+            "ShapeColor": {"type": "App::PropertyColor", "value": rgb},
             "Visibility": {"type": "App::PropertyBool", "value": visible},
         }
-
-    # 5) Recompute so that FreeCAD has generated any missing children
-    doc.recompute()
-
-    # 6) Save to a temp FCStd using guidata instead of colors
-    with tempfile.NamedTemporaryFile(delete=False, suffix=".FCStd") as tmp:
-        tmp_path = tmp.name
-
-        # Default camera settings
-        default_camera = 'OrthographicCamera { viewportMapping ADJUST_CAMERA position 8.5470247 -1.1436439 9.9673195 orientation 0.86492187 0.23175442 0.44519675 1.0835806 nearDistance 0.19726367 farDistance 17.140171 aspectRatio 1 focalDistance 8.6602545 height 17.320509 }'
-
-         # Add camera to guidata - try the direct string approach
         guidata["GuiCameraSettings"] = default_camera
 
-        # Use guidata to include both color, visibility, AND camera
-        OfflineRenderingUtils.save(
-            doc,
-            filename=tmp_path,
-            guidata=guidata
-        )
+    # 5) Recompute so FreeCAD generates any missing children
+    doc.recompute()
 
-    # 7) Finally, open that new FCStd in FreeCAD and return the Document handle
-    return fc.app.openDocument(tmp_path)
+    # 7) Save with guidata so FreeCAD writes a full GuiDocument.xml
+    with tempfile.NamedTemporaryFile(delete=False, suffix=".FCStd") as tmp:
+        path = tmp.name
+        OfflineRenderingUtils.save(doc, filename=path, guidata=guidata)
+
+    return fc.app.openDocument(path)
