@@ -30,13 +30,17 @@ class Part_PropertyPartShape(BaseProp):
 
         try:
             shape = Part.Shape()
-            shape.importBrepFromString(prop_value) 
-            
+            shape.importBrepFromString(prop_value)
+
             if shape.isNull():
-                print(f"Warning: Reconstructed shape is Null after importBrepFromString. Input (first 100 chars): {prop_value[:100]}...")
-                return None 
+                print(
+                    f"Warning: Reconstructed shape is Null after importBrepFromString. Input (first 100 chars): {prop_value[:100]}..."
+                )
+                return None
 
             return shape
         except Exception as e:
-            print(f"Failed to rebuild BRep shape with importBrepFromString: {e}. Input (first 100 chars): {prop_value[:100]}...")
+            print(
+                f"Failed to rebuild BRep shape with importBrepFromString: {e}. Input (first 100 chars): {prop_value[:100]}..."
+            )
             return None

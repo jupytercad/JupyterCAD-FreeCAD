@@ -192,7 +192,7 @@ class FCStd:
                     # Skip Color property as it's handled separately through guidata
                     if prop == "Color":
                         continue
-                        
+
                     if hasattr(fc_obj, prop):
                         try:
                             prop_type = fc_obj.getTypeIdOfProperty(prop)

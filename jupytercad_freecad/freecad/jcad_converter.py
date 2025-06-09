@@ -86,7 +86,13 @@ def export_jcad_to_fcstd(jcad_dict: dict) -> "fc.Document":
 
     prop_handlers = build_prop_handlers()
     coordinate_names = {
-        "Origin", "X_Axis", "Y_Axis", "Z_Axis", "XY_Plane", "XZ_Plane", "YZ_Plane"
+        "Origin",
+        "X_Axis",
+        "Y_Axis",
+        "Z_Axis",
+        "XY_Plane",
+        "XZ_Plane",
+        "YZ_Plane",
     }
 
     # 1) Sanitize JCAD names in place and build a mapping
@@ -104,20 +110,19 @@ def export_jcad_to_fcstd(jcad_dict: dict) -> "fc.Document":
 
     # 2) Separate PartDesign::Body entries from others
     body_objs = [
-        o for o in jcad_dict.get("objects", [])
-        if o["shape"] == "PartDesign::Body"
+        o for o in jcad_dict.get("objects", []) if o["shape"] == "PartDesign::Body"
     ]
     other_objs = [
-        o for o in jcad_dict.get("objects", [])
+        o
+        for o in jcad_dict.get("objects", [])
         if o not in body_objs and o["name"] not in coordinate_names
     ]
 
     # Helper: determine RGB tuple and visibility flag
     def _color_and_visibility(jcad_obj):
         opts = jcad_dict.get("options", {}).get(jcad_obj["name"], {})
-        hexcol = (
-            jcad_obj.get("parameters", {}).get("Color")
-            or opts.get("color", "#808080")
+        hexcol = jcad_obj.get("parameters", {}).get("Color") or opts.get(
+            "color", "#808080"
         )
         rgb = _hex_to_rgb(hexcol)
         visible = opts.get("visible")
@@ -152,16 +157,17 @@ def export_jcad_to_fcstd(jcad_dict: dict) -> "fc.Document":
 
         rgb, visible = _color_and_visibility(obj)
         default_camera = (
-        "OrthographicCamera {\n"
-        "    viewportMapping ADJUST_CAMERA\n"
-        "    position 5.0 0.0 10.0\n"
-        "    orientation 0.7 0.2 0.4 1.0\n"
-        "    nearDistance 0.2\n"
-        "    farDistance 20.0\n"
-        "    aspectRatio 1.0\n"
-        "    focalDistance 8.0\n"
-        "    height 16.0\n"
-        "}")
+            "OrthographicCamera {\n"
+            "    viewportMapping ADJUST_CAMERA\n"
+            "    position 5.0 0.0 10.0\n"
+            "    orientation 0.7 0.2 0.4 1.0\n"
+            "    nearDistance 0.2\n"
+            "    farDistance 20.0\n"
+            "    aspectRatio 1.0\n"
+            "    focalDistance 8.0\n"
+            "    height 16.0\n"
+            "}"
+        )
         guidata[obj["name"]] = {
             "ShapeColor": {"type": "App::PropertyColor", "value": rgb},
             "Visibility": {"type": "App::PropertyBool", "value": visible},

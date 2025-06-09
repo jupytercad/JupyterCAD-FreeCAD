@@ -11,6 +11,7 @@ import tornado
 from jupytercad_freecad.freecad.loader import FCStd
 from jupytercad_freecad.freecad.jcad_converter import export_jcad_to_fcstd
 
+
 class BackendCheckHandler(APIHandler):
     @tornado.web.authenticated
     def post(self):
@@ -36,7 +37,7 @@ class JCadExportHandler(APIHandler):
 
         # Works with both prefixed and unprefixed paths
         path = body.get("path", "")
-        parts = path.split(":", 1) 
+        parts = path.split(":", 1)
 
         if len(parts) == 2:
             file_name = parts[1]
@@ -113,20 +114,21 @@ class FCStdExportHandler(APIHandler):
         # convert to FreeCAD document
         try:
             doc = export_jcad_to_fcstd(jcad_dict)
-            
-            temp_fcstd_path = doc.FileName 
+
+            temp_fcstd_path = doc.FileName
             shutil.copy2(temp_fcstd_path, str(out_path))
-            
+
             # Clean up the temporary file
             if os.path.exists(temp_fcstd_path):
                 os.unlink(temp_fcstd_path)
-                
+
         except Exception as e:
             self.log.error(f"Error converting to FCStd: {e}")
             self.set_status(500)
             return self.finish(json.dumps({"error": str(e)}))
 
         self.finish(json.dumps({"done": True, "exportedPath": str(out_path)}))
+
 
 def setup_handlers(web_app):
     host_pattern = ".*$"
@@ -142,7 +144,7 @@ def setup_handlers(web_app):
             url_path_join(base_url, "jupytercad_freecad", "export-jcad"),
             JCadExportHandler,
         ),
-                (
+        (
             url_path_join(base_url, "jupytercad_freecad", "export-fcstd"),
             FCStdExportHandler,
         ),
