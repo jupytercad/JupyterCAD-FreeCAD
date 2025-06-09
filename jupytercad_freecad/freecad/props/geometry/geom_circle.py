@@ -7,7 +7,7 @@ from ..base_prop import BaseProp
 with redirect_stdout_stderr():
     try:
         import freecad as fc
-        import Part
+        import Part as Part
     except ImportError:
         fc = None
 
