@@ -31,7 +31,8 @@ def _rgb_to_hex(rgb):
 def _hex_to_rgb(hex_color):
     """Convert hex color string to an RGB tuple"""
     hex_color = hex_color.lstrip("#")
-    return tuple(int(hex_color[i : i + 2], 16) / 255.0 for i in (0, 2, 4))
+    result = tuple(int(hex_color[i : i + 2], 16) / 255.0 for i in (0, 2, 4))
+    return result
 
 
 def _guidata_to_options(guidata):
@@ -78,7 +79,6 @@ def _options_to_guidata(options):
         if "color" in data:
             rgb_value = _hex_to_rgb(data["color"])
             obj_data["ShapeColor"] = dict(type="App::PropertyColor", value=rgb_value)
-
         # Handle visibility property from JupyterCad to FreeCAD's Visibility
         if "visible" in data:
             obj_data["Visibility"] = dict(
@@ -189,6 +189,10 @@ class FCStd:
                 fc_obj = fc_file.getObject(py_obj["name"])
 
                 for prop, jcad_prop_value in py_obj["parameters"].items():
+                    # Skip Color property as it's handled separately through guidata
+                    if prop == "Color":
+                        continue
+
                     if hasattr(fc_obj, prop):
                         try:
                             prop_type = fc_obj.getTypeIdOfProperty(prop)
@@ -217,7 +221,6 @@ class FCStd:
                     new_hex_color = py_obj["parameters"]["Color"]
                 else:
                     new_hex_color = "#808080"  # Default to gray if no color is provided
-
                 if obj_name in self._guidata:
                     self._guidata[obj_name]["color"] = new_hex_color
                 else:
