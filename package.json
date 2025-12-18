@@ -85,7 +85,7 @@
         "@jupyterlab/apputils": "~4.0.0",
         "@lumino/coreutils": "^2.0.0",
         "@jupyterlab/notebook": "~4.0.0",
-        "@jupyterlab/services": " ^7.0.0"
+        "@jupyterlab/services": " ^7.5.1"
     },
     "sideEffects": [
         "style/*.css",
