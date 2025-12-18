@@ -2,6 +2,27 @@
 
 <!-- <START NEW CHANGELOG ENTRY> -->
 
+## 3.1.0
+
+([Full Changelog](https://github.com/jupytercad/JupyterCAD-FreeCAD/compare/v3.0.0...96a1239ed680298b7664bb7219fa8766d684a024))
+
+### Maintenance and upkeep improvements
+
+- Trusted publishers [#41](https://github.com/jupytercad/JupyterCAD-FreeCAD/pull/41) ([@martinRenou](https://github.com/martinRenou))
+- Update for latest collaboration and JupyterCad 3.4.0 [#40](https://github.com/jupytercad/JupyterCAD-FreeCAD/pull/40) ([@martinRenou](https://github.com/martinRenou))
+- Bump `upload-artifact` & `download-artifact` actions to v4 [#37](https://github.com/jupytercad/JupyterCAD-FreeCAD/pull/37) ([@arjxn-py](https://github.com/arjxn-py), [@martinRenou](https://github.com/martinRenou))
+
+### Contributors to this release
+
+The following people contributed discussions, new ideas, code and documentation contributions, and review.
+See [our definition of contributors](https://github-activity.readthedocs.io/en/latest/#how-does-this-tool-define-contributions-in-the-reports).
+
+([GitHub contributors page for this release](https://github.com/jupytercad/JupyterCAD-FreeCAD/graphs/contributors?from=2024-12-05&to=2025-12-18&type=c))
+
+@arjxn-py ([activity](https://github.com/search?q=repo%3Ajupytercad%2FJupyterCAD-FreeCAD+involves%3Aarjxn-py+updated%3A2024-12-05..2025-12-18&type=Issues)) | @martinRenou ([activity](https://github.com/search?q=repo%3Ajupytercad%2FJupyterCAD-FreeCAD+involves%3AmartinRenou+updated%3A2024-12-05..2025-12-18&type=Issues)) | @trungleduc ([activity](https://github.com/search?q=repo%3Ajupytercad%2FJupyterCAD-FreeCAD+involves%3Atrungleduc+updated%3A2024-12-05..2025-12-18&type=Issues))
+
+<!-- <END NEW CHANGELOG ENTRY> -->
+
 ## 3.0.0
 
 ([Full Changelog](https://github.com/jupytercad/JupyterCAD-FreeCAD/compare/v3.0.0a1...eb212b1625de7623fbd44f9db32c246934cbcb41))
@@ -20,8 +41,6 @@
 ([GitHub contributors page for this release](https://github.com/jupytercad/JupyterCAD-FreeCAD/graphs/contributors?from=2024-11-04&to=2024-12-05&type=c))
 
 [@jtpio](https://github.com/search?q=repo%3Ajupytercad%2FJupyterCAD-FreeCAD+involves%3Ajtpio+updated%3A2024-11-04..2024-12-05&type=Issues) | [@martinRenou](https://github.com/search?q=repo%3Ajupytercad%2FJupyterCAD-FreeCAD+involves%3AmartinRenou+updated%3A2024-11-04..2024-12-05&type=Issues) | [@pre-commit-ci](https://github.com/search?q=repo%3Ajupytercad%2FJupyterCAD-FreeCAD+involves%3Apre-commit-ci+updated%3A2024-11-04..2024-12-05&type=Issues) | [@SylvainCorlay](https://github.com/search?q=repo%3Ajupytercad%2FJupyterCAD-FreeCAD+involves%3ASylvainCorlay+updated%3A2024-11-04..2024-12-05&type=Issues)
-
-<!-- <END NEW CHANGELOG ENTRY> -->
 
 ## 3.0.0a1
 
