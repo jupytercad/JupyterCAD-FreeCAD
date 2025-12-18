@@ -1,7 +1,4 @@
-import {
-  ICollaborativeDrive,
-  SharedDocumentFactory
-} from '@jupyter/collaborative-drive';
+import { ICollaborativeContentProvider } from '@jupyter/collaborative-drive';
 import {
   IAnnotationModel,
   IJCadWorkerRegistry,
@@ -14,6 +11,7 @@ import {
   JupyterFrontEnd,
   JupyterFrontEndPlugin
 } from '@jupyterlab/application';
+import { SharedDocumentFactory } from '@jupyterlab/services';
 import {
   IThemeManager,
   showErrorMessage,
@@ -43,7 +41,7 @@ const activate = async (
   tracker: WidgetTracker<IJupyterCadWidget>,
   themeManager: IThemeManager,
   annotationModel: IAnnotationModel,
-  drive: ICollaborativeDrive,
+  collaborativeContentProvider: ICollaborativeContentProvider,
   workerRegistry: IJCadWorkerRegistry,
   externalCommandRegistry: IJCadExternalCommandRegistry
 ): Promise<void> => {
@@ -98,7 +96,7 @@ const activate = async (
   const FCStdSharedModelFactory: SharedDocumentFactory = () => {
     return new JupyterCadDoc();
   };
-  drive.sharedModelFactory.registerDocumentFactory(
+  collaborativeContentProvider.sharedModelFactory.registerDocumentFactory(
     'FCStd',
     FCStdSharedModelFactory
   );
@@ -126,7 +124,7 @@ export const fcplugin: JupyterFrontEndPlugin<void> = {
     IJupyterCadDocTracker,
     IThemeManager,
     IAnnotationToken,
-    ICollaborativeDrive,
+    ICollaborativeContentProvider,
     IJCadWorkerRegistryToken,
     IJCadExternalCommandRegistryToken
   ],

@@ -121,9 +121,7 @@ test.describe('UI Test', () => {
 
       await page.getByTitle('New Box').click();
 
-      const nameInput = await page.locator(
-        'input[id^="id-jp-schemaform"][label="Name"]'
-      );
+      const nameInput = await page.locator('input[id^="root_Name"]');
       await nameInput.fill('Foo');
       const accept = await page.locator('div.jp-Dialog-buttonLabel', {
         hasText: 'Submit'
@@ -193,8 +191,8 @@ test.describe('UI Test', () => {
         .locator('[data-test-id="react-tree-root"]')
         .getByText('myBox')
         .click();
-      await page.getByLabel('Height*').click();
-      await page.getByLabel('Height*').fill('32');
+      await page.locator('input[id^="root_Height"]').click();
+      await page.locator('input[id^="root_Height"]').fill('32');
       await page.getByRole('button', { name: 'Submit' }).click();
 
       // Deselect object for the screenshot
@@ -230,12 +228,12 @@ test.describe('UI Test', () => {
       // Create a cone
       await page.getByTitle('New Cone').click();
 
-      await page.getByLabel('Radius1').click();
-      await page.getByLabel('Radius1').fill('15');
-      await page.getByLabel('Radius2').click();
-      await page.getByLabel('Radius2').fill('5');
-      await page.getByLabel('Height').click();
-      await page.getByLabel('Height').fill('20');
+      await page.locator('input[id^="root_Radius1"]').click();
+      await page.locator('input[id^="root_Radius1"]').fill('15');
+      await page.locator('input[id^="root_Radius2"]').click();
+      await page.locator('input[id^="root_Radius2"]').fill('5');
+      await page.locator('input[id^="root_Height"]').click();
+      await page.locator('input[id^="root_Height"]').fill('20');
       await page
         .locator('div.jp-Dialog-buttonLabel', {
           hasText: 'Submit'

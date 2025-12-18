@@ -9,9 +9,7 @@ import { Contents } from '@jupyterlab/services';
 /**
  * A Model factory to create new instances of JupyterCadModel.
  */
-export class JupyterCadFCModelFactory
-  implements DocumentRegistry.IModelFactory<JupyterCadModel>
-{
+export class JupyterCadFCModelFactory implements DocumentRegistry.IModelFactory<JupyterCadModel> {
   constructor(options: JupyterCadFCModelFactory.IOptions) {
     this._annotationModel = options.annotationModel;
   }

@@ -51,10 +51,10 @@
         "watch:labextension": "jupyter labextension watch ."
     },
     "dependencies": {
-        "@jupyter/collaborative-drive": "^3.0.0",
-        "@jupytercad/base": "^3.0.0",
-        "@jupytercad/jupytercad-core": "^3.0.0",
-        "@jupytercad/schema": "^3.0.0",
+        "@jupyter/collaborative-drive": "^4",
+        "@jupytercad/base": "^3.4.0",
+        "@jupytercad/jupytercad-core": "^3.4.0",
+        "@jupytercad/schema": "^3.4.0",
         "@jupyterlab/application": "^4.0.0"
     },
     "devDependencies": {
@@ -85,7 +85,7 @@
         "@jupyterlab/apputils": "~4.0.0",
         "@lumino/coreutils": "^2.0.0",
         "@jupyterlab/notebook": "~4.0.0",
-        "@jupyterlab/services": " ^7.0.0"
+        "@jupyterlab/services": " ^7.5.1"
     },
     "sideEffects": [
         "style/*.css",
