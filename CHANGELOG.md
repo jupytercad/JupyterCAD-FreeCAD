@@ -2,6 +2,30 @@
 
 <!-- <START NEW CHANGELOG ENTRY> -->
 
+## 3.1.1
+
+([Full Changelog](https://github.com/jupytercad/JupyterCAD-FreeCAD/compare/v3.1.0...7db37e26a8c43d7106bc163050ffbfa359d4d8fd))
+
+### Bugs fixed
+
+- Bring back icons in filebrowser [#44](https://github.com/jupytercad/JupyterCAD-FreeCAD/pull/44) ([@martinRenou](https://github.com/martinRenou))
+
+### Maintenance and upkeep improvements
+
+- Update releaser scripts to use Github App [#43](https://github.com/jupytercad/JupyterCAD-FreeCAD/pull/43) ([@martinRenou](https://github.com/martinRenou))
+- Update snapshots bot checkout and permission check [#42](https://github.com/jupytercad/JupyterCAD-FreeCAD/pull/42) ([@martinRenou](https://github.com/martinRenou))
+
+### Contributors to this release
+
+The following people contributed discussions, new ideas, code and documentation contributions, and review.
+See [our definition of contributors](https://github-activity.readthedocs.io/en/latest/use/#how-does-this-tool-define-contributions-in-the-reports).
+
+([GitHub contributors page for this release](https://github.com/jupytercad/JupyterCAD-FreeCAD/graphs/contributors?from=2025-12-18&to=2026-03-24&type=c))
+
+@martinRenou ([activity](https://github.com/search?q=repo%3Ajupytercad%2FJupyterCAD-FreeCAD+involves%3AmartinRenou+updated%3A2025-12-18..2026-03-24&type=Issues))
+
+<!-- <END NEW CHANGELOG ENTRY> -->
+
 ## 3.1.0
 
 ([Full Changelog](https://github.com/jupytercad/JupyterCAD-FreeCAD/compare/v3.0.0...96a1239ed680298b7664bb7219fa8766d684a024))
@@ -20,8 +44,6 @@ See [our definition of contributors](https://github-activity.readthedocs.io/en/l
 ([GitHub contributors page for this release](https://github.com/jupytercad/JupyterCAD-FreeCAD/graphs/contributors?from=2024-12-05&to=2025-12-18&type=c))
 
 @arjxn-py ([activity](https://github.com/search?q=repo%3Ajupytercad%2FJupyterCAD-FreeCAD+involves%3Aarjxn-py+updated%3A2024-12-05..2025-12-18&type=Issues)) | @martinRenou ([activity](https://github.com/search?q=repo%3Ajupytercad%2FJupyterCAD-FreeCAD+involves%3AmartinRenou+updated%3A2024-12-05..2025-12-18&type=Issues)) | @trungleduc ([activity](https://github.com/search?q=repo%3Ajupytercad%2FJupyterCAD-FreeCAD+involves%3Atrungleduc+updated%3A2024-12-05..2025-12-18&type=Issues))
-
-<!-- <END NEW CHANGELOG ENTRY> -->
 
 ## 3.0.0
 
