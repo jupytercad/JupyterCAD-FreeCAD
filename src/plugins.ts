@@ -89,7 +89,6 @@ const activate = async (
     mimeTypes: ['application/octet-stream'],
     extensions: ['.FCStd', 'fcstd'],
     fileFormat: 'base64',
-    contentType: 'FCStd',
     icon: freecadIcon
   });
 
