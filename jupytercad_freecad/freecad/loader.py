@@ -12,6 +12,11 @@ from .props.base_prop import BaseProp
 
 logger = logging.getLogger(__file__)
 
+from jupytercad_core.schema.interfaces.jcad import Parts
+
+SUPPORTED_TYPES = [part.value for part in list(Parts)]
+
+
 with redirect_stdout_stderr():
     try:
         import freecad as fc
@@ -244,6 +249,9 @@ class FCStd:
             name=obj.Name,
         )
         for prop in obj.PropertiesList:
+            # Do not load Shape entry if we support that type in JupyterCAD
+            if prop == "Shape" and obj.TypeId in SUPPORTED_TYPES:
+                continue
             prop_type = obj.getTypeIdOfProperty(prop)
             prop_value = getattr(obj, prop)
             prop_handler = self._prop_handlers.get(prop_type, None)
