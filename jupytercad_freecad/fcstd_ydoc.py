@@ -20,6 +20,7 @@ class YFCStd(YBaseDoc):
     def objects(self) -> Array:
         return self._yobjects
 
+    @property
     def version(self) -> str:
         return "0.1.0"
 
