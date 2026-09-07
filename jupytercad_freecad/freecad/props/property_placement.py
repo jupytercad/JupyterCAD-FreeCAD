@@ -2,9 +2,7 @@ import math
 from typing import Any
 
 from ..tools import redirect_stdout_stderr
-
 from .base_prop import BaseProp
-
 
 with redirect_stdout_stderr():
     try:
