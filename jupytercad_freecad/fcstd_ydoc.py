@@ -1,8 +1,8 @@
-from typing import Any, Callable
 from functools import partial
+from typing import Any, Callable
 
-from pycrdt import Array, Map, Text
 from jupyter_ydoc.ybasedoc import YBaseDoc
+from pycrdt import Array, Map, Text
 
 from .freecad.loader import FCStd
 
