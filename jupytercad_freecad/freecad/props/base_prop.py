@@ -22,7 +22,6 @@ class BaseProp(ABC):
         Returns:
             Any:
         """
-        pass
 
     @staticmethod
     @abstractmethod
@@ -45,4 +44,3 @@ class BaseProp(ABC):
         Returns:
             Any:
         """
-        pass
