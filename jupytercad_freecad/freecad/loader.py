@@ -5,10 +5,9 @@ import tempfile
 import traceback
 from typing import Dict, List, Type
 
-from .tools import redirect_stdout_stderr
-
 from . import props as Props
 from .props.base_prop import BaseProp
+from .tools import redirect_stdout_stderr
 
 logger = logging.getLogger(__file__)
 
@@ -23,9 +22,7 @@ with redirect_stdout_stderr():
 
 def _rgb_to_hex(rgb):
     """Converts a list of RGB values [0-1] to a hex color string"""
-    return "#{:02x}{:02x}{:02x}".format(
-        int(rgb[0] * 255), int(rgb[1] * 255), int(rgb[2] * 255)
-    )
+    return f"#{int(rgb[0] * 255):02x}{int(rgb[1] * 255):02x}{int(rgb[2] * 255):02x}"
 
 
 def _hex_to_rgb(hex_color):
